@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Scene/MC_Anim.tres" id="2_p6jvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jvd"]
-size = Vector2(46, 120)
+size = Vector2(24, 74)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm4wn"]
 size = Vector2(1202.5, 141)
@@ -20,12 +20,12 @@ script = ExtResource("1_3l2fi")
 
 [node name="Rai_Animation" type="AnimatedSprite2D" parent="Rai"]
 position = Vector2(-5, 9)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_p6jvd")
-animation = &"duck"
+animation = &"weave"
 
 [node name="temp" type="CollisionShape2D" parent="Rai"]
-position = Vector2(-5, 9)
+position = Vector2(-5, 11)
 shape = SubResource("RectangleShape2D_p6jvd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

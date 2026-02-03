@@ -1,16 +1,16 @@
 [gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://7edxy6uay8ty"]
 
-[ext_resource type="Texture2D" uid="uid://ddeb61mn6ss60" path="res://Rai/Rai_Duck_Left.png" id="1_woupi"]
-[ext_resource type="Texture2D" uid="uid://l4i6k4oty3ov" path="res://Rai/Rai_Hook.png" id="2_mpqvv"]
-[ext_resource type="Texture2D" uid="uid://b0ktsceic86gg" path="res://Rai/Rai_Idle_Fighting.png" id="3_hj8ti"]
-[ext_resource type="Texture2D" uid="uid://o6e1345kow81" path="res://Rai/Untitled_Artwork 3.png" id="4_wpk2c"]
-[ext_resource type="Texture2D" uid="uid://dty5t2uruli61" path="res://Rai/Rai_Straight_Punch.png" id="5_m1iy8"]
-[ext_resource type="Texture2D" uid="uid://b3pnkfb060y03" path="res://Rai/Rai_Weave 3.png" id="6_qful5"]
+[ext_resource type="Texture2D" uid="uid://bggw0hpyi6r6e" path="res://Rai/Rai_Duck_Left-removebg-preview.png" id="1_woupi"]
+[ext_resource type="Texture2D" uid="uid://ccg6nnwi4qwbg" path="res://Rai/Rai_Hook-removebg-preview.png" id="2_mpqvv"]
+[ext_resource type="Texture2D" uid="uid://bxquds7roh7oi" path="res://Rai/Rai_Idle_Fighting-removebg-preview.png" id="3_hj8ti"]
+[ext_resource type="Texture2D" uid="uid://dihboiiktlgrx" path="res://Rai/Untitled_Artwork_3-removebg-preview.png" id="4_wpk2c"]
+[ext_resource type="Texture2D" uid="uid://c5r5oynmfm68x" path="res://Rai/Rai_Straight_Punch-removebg-preview.png" id="5_m1iy8"]
+[ext_resource type="Texture2D" uid="uid://86kxyaux2rsl" path="res://Rai/Rai_Weave_3-removebg-preview.png" id="6_qful5"]
 
 [resource]
 animations = [{
 "frames": [{
-"duration": 1.5,
+"duration": 1.0,
 "texture": ExtResource("1_woupi")
 }],
 "loop": true,
@@ -18,7 +18,7 @@ animations = [{
 "speed": 1.0
 }, {
 "frames": [{
-"duration": 4.0,
+"duration": 1.0,
 "texture": ExtResource("2_mpqvv")
 }],
 "loop": true,
@@ -34,7 +34,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 1.0,
 "texture": ExtResource("4_wpk2c")
 }],
 "loop": true,
@@ -50,7 +50,7 @@ animations = [{
 "speed": 1.0
 }, {
 "frames": [{
-"duration": 1.5,
+"duration": 1.0,
 "texture": ExtResource("6_qful5")
 }],
 "loop": true,
