@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3tn0c3rftvgt"]
+[gd_scene load_steps=7 format=3 uid="uid://c3tn0c3rftvgt"]
 
 [ext_resource type="Script" uid="uid://g2xgxeb670ri" path="res://Script/PlayerController.gd" id="1_3l2fi"]
 [ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Scene/MC_Anim.tres" id="2_p6jvd"]
+[ext_resource type="Resource" uid="uid://bgsrwoxspajba" path="res://move.tres" id="2_vm4wn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jvd"]
 size = Vector2(24, 74)
@@ -15,6 +16,7 @@ size = Vector2(1202.5, 141)
 
 [node name="Rai" type="CharacterBody2D" parent="."]
 script = ExtResource("1_3l2fi")
+move = ExtResource("2_vm4wn")
 
 [node name="Camera2D" type="Camera2D" parent="Rai"]
 
