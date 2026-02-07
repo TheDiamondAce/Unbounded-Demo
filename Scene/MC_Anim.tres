@@ -1,21 +1,41 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://7edxy6uay8ty"]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://7edxy6uay8ty"]
 
+[ext_resource type="Texture2D" uid="uid://dp2tm4ckxsue1" path="res://Rai/Rai__Duck-removebg-preview.png" id="1_hj8ti"]
 [ext_resource type="Texture2D" uid="uid://bggw0hpyi6r6e" path="res://Rai/Rai_Duck_Left-removebg-preview.png" id="1_woupi"]
+[ext_resource type="Texture2D" uid="uid://cs74yjqjv7une" path="res://Rai/Rai_Duck_Right-removebg-preview.png" id="2_hj8ti"]
 [ext_resource type="Texture2D" uid="uid://ccg6nnwi4qwbg" path="res://Rai/Rai_Hook-removebg-preview.png" id="2_mpqvv"]
 [ext_resource type="Texture2D" uid="uid://bxquds7roh7oi" path="res://Rai/Rai_Idle_Fighting-removebg-preview.png" id="3_hj8ti"]
 [ext_resource type="Texture2D" uid="uid://dihboiiktlgrx" path="res://Rai/Untitled_Artwork_3-removebg-preview.png" id="4_wpk2c"]
 [ext_resource type="Texture2D" uid="uid://c5r5oynmfm68x" path="res://Rai/Rai_Straight_Punch-removebg-preview.png" id="5_m1iy8"]
 [ext_resource type="Texture2D" uid="uid://86kxyaux2rsl" path="res://Rai/Rai_Weave_3-removebg-preview.png" id="6_qful5"]
+[ext_resource type="Texture2D" uid="uid://8ja8mnu7to3e" path="res://Rai/Rai_Weave_Left-removebg-preview.png" id="9_m1iy8"]
+[ext_resource type="Texture2D" uid="uid://syna2pnv2b81" path="res://Rai/Rai_Weave_Right-removebg-preview.png" id="10_qful5"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_woupi")
+"texture": ExtResource("1_hj8ti")
 }],
 "loop": true,
 "name": &"duck",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_woupi")
+}],
+"loop": true,
+"name": &"duck_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hj8ti")
+}],
+"loop": true,
+"name": &"duck_right",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -55,5 +75,21 @@ animations = [{
 }],
 "loop": true,
 "name": &"weave",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_m1iy8")
+}],
+"loop": true,
+"name": &"weave_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_qful5")
+}],
+"loop": true,
+"name": &"weave_right",
 "speed": 5.0
 }]
