@@ -2,19 +2,25 @@ extends CharacterBody2D
 
 
 @onready var animSprite = $Rai_Animation 
-@export var impVelocity = 0
+@export var impVelocity = 1500
 @export var dashTime = .3
+@export var cooldownDuration = 0.6
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 var dash_duration = 0
 var cooldown = 0
-var cooldownDuration = 2
 var isdashing = false
-var flipped = false	
+var flipped = 1	
+var reload =preload("res://Scene/Level_0.tscn")
+@export var isWeaving = false
+var isDucking = false
 
 func _physics_process(delta: float) -> void:
+	#TEMP TEMP TEMP REMOVE LATER
+	if Input.is_action_just_pressed("restart"):
+		get_tree().change_scene_to_packed(reload)
 	animation()
 	var direction := Input.get_axis("left", "right")
 		
@@ -26,7 +32,6 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		print("1 ")
 		
 		
 	if cooldown > 0:
@@ -42,11 +47,10 @@ func _physics_process(delta: float) -> void:
 	if isdashing:
 		dash_duration -= delta
 		velocity.x = flipped * impVelocity
-		print("5")
+		velocity.y = 0
 		
 	if dash_duration <0 && isdashing == true:
 		end_dash()
-		print("6")
 		
 	else:	
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -88,6 +92,7 @@ func animation() -> void:
 		
 	#weave animations		
 	if Input.is_action_pressed("weave"):
+		isWeaving = true	
 		if Input.is_action_just_pressed("attack"):
 			animSprite.play("kick")
 		else: if Input.is_action_pressed("dodge_left"):
@@ -95,7 +100,14 @@ func animation() -> void:
 		else: if Input.is_action_pressed("dodge_right"):
 			animSprite.play("weave_right")
 		else:
-			animSprite.play("weave")		
+			animSprite.play("weave")
+	#CODE IT IN LATER SO THAT IF YOUR WEAVING OR DODGING AND YOU PRESS DASH, IT WILL HAVE THE HOP ANIMATION OR DASH ANIMATION RESPECTIVELY, ELSE FOLLOW THIS CODE. MAKE IT GO THE DIRECTION THE WEAVE IS LEANING OR DUCK IS TOWARDS.
+	if isdashing and animSprite.flip_h == true and velocity.x > 0 or isdashing and animSprite.flip_h ==false and velocity.x <0 and !isWeaving and !isDucking:
+		animSprite.play("hop")	
+		
+	else: if isdashing and animSprite.flip_h == true and velocity.x < 0 or isdashing and animSprite.flip_h ==false and velocity.x > 0:
+		animSprite.play("dash")	
 	# idle animations
 	else: if !Input.is_anything_pressed():
 		animSprite.play("idle")
+		

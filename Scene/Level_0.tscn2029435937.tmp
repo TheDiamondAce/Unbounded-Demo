@@ -23,7 +23,7 @@ dashTime = 0.2
 position = Vector2(-5, 9)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_p6jvd")
-animation = &"hop"
+animation = &"dash"
 
 [node name="temp" type="CollisionShape2D" parent="Rai"]
 position = Vector2(-5, 11)
