@@ -1,35 +1,76 @@
 extends CharacterBody2D
 
 
+@onready var animSprite = $Rai_Animation 
+@export var impVelocity = 0
+@export var dashTime = .3
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-@onready var animSprite = $Rai_Animation 
 
+var dash_duration = 0
+var cooldown = 0
+var cooldownDuration = 2
+var isdashing = false
+var flipped = false	
 
 func _physics_process(delta: float) -> void:
+	animation()
+	var direction := Input.get_axis("left", "right")
+		
+	if direction:
+			velocity.x = direction * SPEED
+			animSprite.flip_h =direction<0
+			move_and_slide()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		print("1 ")
 		
-
+		
+	if cooldown > 0:
+		cooldown -=delta	
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	if !isdashing and direction !=0:
+		flipped = sign(direction)
+	if Input.is_action_just_pressed("dash") and cooldown <= 0:
+		start_dash()
+	if isdashing:
+		dash_duration -= delta
+		velocity.x = flipped * impVelocity
+		print("5")
 		
+	if dash_duration <0 && isdashing == true:
+		end_dash()
+		print("6")
+		
+	else:	
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	move_and_slide()
+
+		
+func start_dash() -> void:
+	isdashing = true
+	dash_duration = dashTime
+	cooldown = cooldownDuration
+	
+	#makes it more flat, instead of making dash have an arc when jumping.
+	velocity.y = min(velocity.y,0)
+
+	
+func end_dash() -> void:
+	isdashing = false
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("left", "right")
-	if direction:
-		print("moving")
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-	animation()
-	move_and_slide()	
 
 func animation() -> void:
+	
 	#attack animation
 	if Input.is_action_just_pressed("attack"):
 			animSprite.play("punch")
@@ -58,5 +99,3 @@ func animation() -> void:
 	# idle animations
 	else: if !Input.is_anything_pressed():
 		animSprite.play("idle")
-	 
-	

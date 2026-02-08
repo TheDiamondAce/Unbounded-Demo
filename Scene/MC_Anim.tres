@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://7edxy6uay8ty"]
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://7edxy6uay8ty"]
 
 [ext_resource type="Texture2D" uid="uid://dp2tm4ckxsue1" path="res://Rai/Rai__Duck-removebg-preview.png" id="1_hj8ti"]
+[ext_resource type="Texture2D" uid="uid://bsypa0c1l10oe" path="res://images/dash.jpg" id="1_qful5"]
 [ext_resource type="Texture2D" uid="uid://bggw0hpyi6r6e" path="res://Rai/Rai_Duck_Left-removebg-preview.png" id="1_woupi"]
 [ext_resource type="Texture2D" uid="uid://cs74yjqjv7une" path="res://Rai/Rai_Duck_Right-removebg-preview.png" id="2_hj8ti"]
 [ext_resource type="Texture2D" uid="uid://ccg6nnwi4qwbg" path="res://Rai/Rai_Hook-removebg-preview.png" id="2_mpqvv"]
@@ -13,6 +14,14 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qful5")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_hj8ti")
