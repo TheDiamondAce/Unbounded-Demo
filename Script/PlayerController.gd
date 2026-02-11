@@ -12,6 +12,7 @@ extends CharacterBody2D
 
 @export_category("Action Variables")
 @export var isWeaving = false
+@export var comboDuration : float
  
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -22,12 +23,18 @@ var isdashing = false
 var flipped = 1	
 var isDucking = false
 var isInAir = false
-var canAirDash = true	
+var canAirDash = true
+var inputSequence = []	
+var comboTimer = 0.0
 
 func _physics_process(delta: float) -> void:
+	
 	#TEMP TEMP TEMP REMOVE LATER
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file("res://Scene/Level_0.tscn")
+		
+	if comboTimer >0:
+		comboTimer -= delta
 		
 		
 	animation()
@@ -53,6 +60,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		record_input("jump")
 	if !isdashing and direction !=0:
 		flipped = sign(direction)
 	if Input.is_action_just_pressed("dash") and cooldown <= 0 and canAirDash:
@@ -147,4 +155,26 @@ func collider_size():
 	if animSprite.animation == "weave":
 		hurtBox.position = Vector2(-13,9)
 		hurtBox.scale.x = .5
+		
+func record_input(action):
+	if comboTimer <= 0:
+		inputSequence = []
+		start_combo_timer()
+		inputSequence.append(action)
+		print(action)
+		print(inputSequence)
+		check_combos()
+	else: if comboTimer > 0:
+		inputSequence.append(action)
+		print(action)
+		print(inputSequence)
+		check_combos()
+		
+func start_combo_timer():
+	comboTimer = comboDuration
+	
+func check_combos() -> void:
+	if inputSequence.size() == 4:
+		inputSequence = []
+	
 	pass
