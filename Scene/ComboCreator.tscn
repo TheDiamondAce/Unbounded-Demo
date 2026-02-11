@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyevxras5osrk"]
+
+[ext_resource type="Script" uid="uid://cq4l85fm8x6du" path="res://Scene/combo_creator.gd" id="1_7nk0m"]
+
+[node name="ComboCreator" type="Node2D"]
+script = ExtResource("1_7nk0m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Title" type="TextEdit" parent="."]
+offset_left = -353.0
+offset_top = -279.0
+offset_right = 391.0
+offset_bottom = -124.0
+theme_override_font_sizes/font_size = 100
+text = "Combo Creator"
+editable = false
+
+[node name="ButtonPressed" type="TextEdit" parent="."]
+offset_left = -437.0
+offset_top = -46.0
+offset_right = -243.0
+offset_bottom = -8.0
+text = "Last Button Pressed: "
