@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ss82tq7iwxu"
-path="res://.godot/imported/Rai_Dash-removebg-preview.png-e445229333cab1fd5edd777e78fe54f4.ctex"
+uid="uid://c4lq2m80fhrl0"
+path="res://.godot/imported/Rai_Landing-removebg-preview.png-7650cc2c943f960ecb903d7e023dcede.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Rai_Dash-removebg-preview.png"
-dest_files=["res://.godot/imported/Rai_Dash-removebg-preview.png-e445229333cab1fd5edd777e78fe54f4.ctex"]
+source_file="res://Rai/Rai_Landing-removebg-preview.png"
+dest_files=["res://.godot/imported/Rai_Landing-removebg-preview.png-7650cc2c943f960ecb903d7e023dcede.ctex"]
 
 [params]
 

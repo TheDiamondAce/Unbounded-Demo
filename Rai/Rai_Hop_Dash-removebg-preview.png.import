@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brf2jpk5db1r"
-path="res://.godot/imported/Rai_Hop_Dash-removebg-preview.png-522acd9510a791449357a747ad0bd42a.ctex"
+path="res://.godot/imported/Rai_Hop_Dash-removebg-preview.png-4d2749806ae460f01d4dcb5c316fa81d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Rai_Hop_Dash-removebg-preview.png"
-dest_files=["res://.godot/imported/Rai_Hop_Dash-removebg-preview.png-522acd9510a791449357a747ad0bd42a.ctex"]
+source_file="res://Rai/Rai_Hop_Dash-removebg-preview.png"
+dest_files=["res://.godot/imported/Rai_Hop_Dash-removebg-preview.png-4d2749806ae460f01d4dcb5c316fa81d.ctex"]
 
 [params]
 

@@ -16,6 +16,7 @@ var flipped = 1
 var reload =preload("res://Scene/Level_0.tscn")
 @export var isWeaving = false
 var isDucking = false
+var isInAir = false
 
 func _physics_process(delta: float) -> void:
 	#TEMP TEMP TEMP REMOVE LATER
@@ -32,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		isInAir = true	
 		
 		
 	if cooldown > 0:
@@ -108,6 +110,10 @@ func animation() -> void:
 	else: if isdashing and animSprite.flip_h == true and velocity.x < 0 or isdashing and animSprite.flip_h ==false and velocity.x > 0:
 		animSprite.play("dash")	
 	# idle animations
-	else: if !Input.is_anything_pressed():
+	else: if !Input.is_anything_pressed() and is_on_floor():
 		animSprite.play("idle")
 		
+	if velocity.y < 0 and not is_on_floor() and !isdashing:
+		animSprite.play("jumping")
+	if velocity.y > 0 and not is_on_floor() and !isdashing:
+		animSprite.play("falling")
