@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://odd7vol2j6wq"]
 
 [ext_resource type="Script" uid="uid://g2xgxeb670ri" path="res://Script/PlayerController.gd" id="1_4vrd6"]
-[ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Scene/MC_Anim.tres" id="2_p1qhu"]
+[ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Animations/MC_Anim.tres" id="2_p1qhu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jvd"]
 size = Vector2(24, 74)
@@ -52,10 +52,12 @@ dashTime = 0.2
 hurtBox = NodePath("HurtBox")
 
 [node name="Rai_Animation" type="AnimatedSprite2D" parent="."]
-position = Vector2(-6, 9)
+position = Vector2(-5, 46)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_p1qhu")
-animation = &"duck"
+animation = &"idle"
+frame_progress = 0.42066
+offset = Vector2(-4.99975, -185)
 
 [node name="HurtBox" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2(-5, 9)
