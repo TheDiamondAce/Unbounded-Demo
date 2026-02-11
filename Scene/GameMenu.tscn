@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6pv47a0svg80"]
 
 [ext_resource type="VideoStream" uid="uid://cqwhsnfk4ykls" path="res://Video/StartScreen.ogv" id="1_53uoq"]
-[ext_resource type="Texture2D" uid="uid://cen6k18vpracr" path="res://images/tempMCAuraFarmingScreen.jpg" id="1_lvykh"]
+[ext_resource type="Texture2D" uid="uid://cen6k18vpracr" path="res://images/Temp/tempMCAuraFarmingScreen.jpg" id="1_lvykh"]
 [ext_resource type="Script" uid="uid://c4k8ayj4pwbc4" path="res://Script/StartScreen.gd" id="3_2l4ar"]
 [ext_resource type="AudioStream" uid="uid://m64ig0dbyr3p" path="res://Audio/Low Key Gliding - extended.mp3" id="4_2l4ar"]
 

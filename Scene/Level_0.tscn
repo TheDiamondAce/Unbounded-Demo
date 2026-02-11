@@ -1,82 +1,131 @@
 [gd_scene load_steps=15 format=3 uid="uid://c3tn0c3rftvgt"]
 
-[ext_resource type="Script" uid="uid://g2xgxeb670ri" path="res://Script/PlayerController.gd" id="1_3l2fi"]
-[ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Scene/MC_Anim.tres" id="2_p6jvd"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jvd"]
-size = Vector2(24, 74)
-
-[sub_resource type="Animation" id="Animation_vuswf"]
-resource_name = "Dash"
-
-[sub_resource type="Animation" id="Animation_h7u5v"]
-resource_name = "Duck"
-
-[sub_resource type="Animation" id="Animation_8exbv"]
-resource_name = "Hook"
-
-[sub_resource type="Animation" id="Animation_p6jvd"]
-resource_name = "Idle"
-
-[sub_resource type="Animation" id="Animation_rl2l2"]
-resource_name = "Jump"
-
-[sub_resource type="Animation" id="Animation_u42u6"]
-resource_name = "Kick"
-
-[sub_resource type="Animation" id="Animation_k5eaa"]
-resource_name = "Landing"
-
-[sub_resource type="Animation" id="Animation_vm4wn"]
-resource_name = "Weave"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_psoxu"]
-_data = {
-&"Dash": SubResource("Animation_vuswf"),
-&"Duck": SubResource("Animation_h7u5v"),
-&"Hook": SubResource("Animation_8exbv"),
-&"Idle": SubResource("Animation_p6jvd"),
-&"Jump": SubResource("Animation_rl2l2"),
-&"Kick": SubResource("Animation_u42u6"),
-&"Landing": SubResource("Animation_k5eaa"),
-&"Weave": SubResource("Animation_vm4wn")
-}
+[ext_resource type="PackedScene" uid="uid://odd7vol2j6wq" path="res://Prefabs/Rai/rai.tscn" id="1_vuswf"]
+[ext_resource type="Script" uid="uid://cx0gum77ou03m" path="res://Script/kai_locked.gd" id="3_8exbv"]
+[ext_resource type="Texture2D" uid="uid://d2c5q31jruki7" path="res://images/Spritesheets/Kai/Kai_Idle_Fighting.png" id="3_rl2l2"]
+[ext_resource type="Texture2D" uid="uid://xmae7pd485au" path="res://images/Spritesheets/Kai/Kai_Idle.png" id="4_8exbv"]
+[ext_resource type="Texture2D" uid="uid://cummce12gvtxl" path="res://images/Spritesheets/Kai/Kai_Temp_Slash.png" id="4_rl2l2"]
+[ext_resource type="Texture2D" uid="uid://b2vwnyahh10nd" path="res://images/Spritesheets/Kai/Kai_Alt_Pose.png" id="5_k5eaa"]
+[ext_resource type="PackedScene" uid="uid://dbotgstj0sspp" path="res://Prefabs/player_camera.tscn" id="7_8exbv"]
+[ext_resource type="Texture2D" uid="uid://bgf2qs7bk5i2t" path="res://images/Spritesheets/Background/beautiful-traditional-japanese-art.jpg" id="8_k5eaa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm4wn"]
-size = Vector2(1202.5, 141)
+size = Vector2(4599, 141)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p6jvd"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_psoxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rl2l2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rl2l2")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_8exbv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_k5eaa")
+}],
+"loop": true,
+"name": &"Locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rl2l2")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5eaa"]
+size = Vector2(400, 580)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rl2l2"]
+radius = 4911.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8exbv"]
+radius = 490.918
+
 [node name="Node2D" type="Node2D"]
 
-[node name="Rai" type="CharacterBody2D" parent="."]
-script = ExtResource("1_3l2fi")
-dashTime = 0.2
-
-[node name="Camera2D" type="Camera2D" parent="Rai"]
-
-[node name="Rai_Animation" type="AnimatedSprite2D" parent="Rai"]
-position = Vector2(-6, 9)
-scale = Vector2(0.2, 0.2)
-sprite_frames = ExtResource("2_p6jvd")
-animation = &"jumping"
-
-[node name="temp" type="CollisionShape2D" parent="Rai"]
-position = Vector2(-5, 11)
-shape = SubResource("RectangleShape2D_p6jvd")
-
-[node name="HitboxPlayer" type="AnimationPlayer" parent="Rai"]
-libraries = {
-&"": SubResource("AnimationLibrary_psoxu")
-}
+[node name="Rai" parent="." instance=ExtResource("1_vuswf")]
+physics_interpolation_mode = 1
+z_index = 5
+impVelocity = 1300.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576.75, 639.5)
+position = Vector2(100, 784)
 shape = SubResource("RectangleShape2D_vm4wn")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2(-0.25, 1.49999)
-scale = Vector2(1203, 144)
+position = Vector2(-15, -2.00001)
+scale = Vector2(4595.75, 144)
 texture = SubResource("PlaceholderTexture2D_p6jvd")
+
+[node name="Kai" type="CharacterBody2D" parent="." node_paths=PackedStringArray("lookCollider")]
+position = Vector2(701, 501)
+scale = Vector2(0.1, 0.1)
+script = ExtResource("3_8exbv")
+lookCollider = NodePath("LookArea/lookRadius")
+
+[node name="Kai" type="AnimatedSprite2D" parent="Kai"]
+sprite_frames = SubResource("SpriteFrames_psoxu")
+animation = &"chase"
+
+[node name="hurtBox" type="CollisionShape2D" parent="Kai"]
+position = Vector2(40, 10.001)
+shape = SubResource("RectangleShape2D_k5eaa")
+
+[node name="LookArea" type="Area2D" parent="Kai"]
+
+[node name="lookRadius" type="CollisionShape2D" parent="Kai/LookArea"]
+shape = SubResource("CircleShape2D_rl2l2")
+
+[node name="AttackArea" type="Area2D" parent="Kai"]
+
+[node name="attack" type="CollisionShape2D" parent="Kai/AttackArea"]
+shape = SubResource("CircleShape2D_8exbv")
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_8exbv")]
+player = NodePath("../Rai")
+smoothing_distance = 2
+
+[node name="Beautiful-traditional-japanese-art" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(130, 310)
+scale = Vector2(0.43985, 0.392143)
+texture = ExtResource("8_k5eaa")
+
+[node name="Beautiful-traditional-japanese-art" type="Sprite2D" parent="Beautiful-traditional-japanese-art"]
+z_index = -1
+position = Vector2(3992.02, -206.922)
+scale = Vector2(0.949266, 0.860006)
+texture = ExtResource("8_k5eaa")
+
+[node name="Beautiful-traditional-japanese-art3" type="Sprite2D" parent="Beautiful-traditional-japanese-art"]
+z_index = -1
+position = Vector2(-3749.01, -209.107)
+scale = Vector2(0.826476, 0.956254)
+texture = ExtResource("8_k5eaa")
+
+[connection signal="area_entered" from="Kai/LookArea" to="Kai" method="_on_look_area_entered"]
+[connection signal="area_exited" from="Kai/LookArea" to="Kai" method="_on_look_area_exited"]
+[connection signal="area_entered" from="Kai/AttackArea" to="Kai" method="_on_attack_area_entered"]
+[connection signal="area_exited" from="Kai/AttackArea" to="Kai" method="_on_attack_area_area_exited"]

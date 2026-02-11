@@ -1,11 +1,18 @@
 extends CharacterBody2D
 
-
 @onready var animSprite = $Rai_Animation 
-@export var impVelocity = 1500
+
+@export_category("Dash Variables")
+@export var impVelocity : float
 @export var dashTime = .3
 @export var cooldownDuration = 0.6
 
+@export_category("Hurt Box Variables")
+@export var hurtBox : CollisionShape2D
+
+@export_category("Action Variables")
+@export var isWeaving = false
+ 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
@@ -13,16 +20,18 @@ var dash_duration = 0
 var cooldown = 0
 var isdashing = false
 var flipped = 1	
-var reload =preload("res://Scene/Level_0.tscn")
-@export var isWeaving = false
 var isDucking = false
 var isInAir = false
 
 func _physics_process(delta: float) -> void:
 	#TEMP TEMP TEMP REMOVE LATER
 	if Input.is_action_just_pressed("restart"):
-		get_tree().change_scene_to_packed(reload)
+		get_tree().change_scene_to_file("res://Scene/Level_0.tscn")
+		
+		
 	animation()
+	collider_size()
+	
 	var direction := Input.get_axis("left", "right")
 		
 	if direction:
@@ -77,6 +86,7 @@ func end_dash() -> void:
 
 func animation() -> void:
 	
+	
 	#attack animation
 	if Input.is_action_just_pressed("attack"):
 			animSprite.play("punch")
@@ -117,3 +127,19 @@ func animation() -> void:
 		animSprite.play("jumping")
 	if velocity.y > 0 and not is_on_floor() and !isdashing:
 		animSprite.play("falling")
+
+func collider_size():
+	if animSprite.animation == "duck":
+		hurtBox.scale.y = .68
+		hurtBox.scale.x =1
+		hurtBox.position= Vector2(-5,22)
+		
+	if animSprite.animation == "idle":
+		hurtBox.position = Vector2(-5,9)
+		hurtBox.scale.y = 1
+		hurtBox.scale.x = 1
+		
+	if animSprite.animation == "weave":
+		hurtBox.position = Vector2(-13,9)
+		hurtBox.scale.x = .5
+	pass

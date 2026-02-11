@@ -1,0 +1,75 @@
+[gd_scene load_steps=14 format=3 uid="uid://odd7vol2j6wq"]
+
+[ext_resource type="Script" uid="uid://g2xgxeb670ri" path="res://Script/PlayerController.gd" id="1_4vrd6"]
+[ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Scene/MC_Anim.tres" id="2_p1qhu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jvd"]
+size = Vector2(24, 74)
+
+[sub_resource type="Animation" id="Animation_vuswf"]
+resource_name = "Dash"
+
+[sub_resource type="Animation" id="Animation_h7u5v"]
+resource_name = "Duck"
+
+[sub_resource type="Animation" id="Animation_8exbv"]
+resource_name = "Hook"
+
+[sub_resource type="Animation" id="Animation_p6jvd"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_rl2l2"]
+resource_name = "Jump"
+
+[sub_resource type="Animation" id="Animation_u42u6"]
+resource_name = "Kick"
+
+[sub_resource type="Animation" id="Animation_k5eaa"]
+resource_name = "Landing"
+
+[sub_resource type="Animation" id="Animation_vm4wn"]
+resource_name = "Weave"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_psoxu"]
+_data = {
+&"Dash": SubResource("Animation_vuswf"),
+&"Duck": SubResource("Animation_h7u5v"),
+&"Hook": SubResource("Animation_8exbv"),
+&"Idle": SubResource("Animation_p6jvd"),
+&"Jump": SubResource("Animation_rl2l2"),
+&"Kick": SubResource("Animation_u42u6"),
+&"Landing": SubResource("Animation_k5eaa"),
+&"Weave": SubResource("Animation_vm4wn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vrd6"]
+size = Vector2(24, 74)
+
+[node name="Rai" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox") groups=["Player"]]
+z_index = 4
+script = ExtResource("1_4vrd6")
+dashTime = 0.2
+hurtBox = NodePath("HurtBox")
+
+[node name="Rai_Animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, 9)
+scale = Vector2(0.2, 0.2)
+sprite_frames = ExtResource("2_p1qhu")
+animation = &"duck"
+
+[node name="HurtBox" type="CollisionShape2D" parent="." groups=["Player"]]
+position = Vector2(-5, 9)
+shape = SubResource("RectangleShape2D_p6jvd")
+
+[node name="HitboxPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_psoxu")
+}
+
+[node name="detectionBox" type="Area2D" parent="." groups=["Player"]]
+visible = false
+
+[node name="collider" type="CollisionShape2D" parent="detectionBox" groups=["Player"]]
+visible = false
+position = Vector2(-5, 9)
+shape = SubResource("RectangleShape2D_4vrd6")
