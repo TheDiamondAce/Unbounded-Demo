@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export_category("Dash Variables")
 @export var impVelocity : float
 @export var dashTime = .3
-@export var cooldownDuration = 0.6
+@export var cooldownDuration : float
 
 @export_category("Hurt Box Variables")
 @export var hurtBox : CollisionShape2D
@@ -22,6 +22,7 @@ var isdashing = false
 var flipped = 1	
 var isDucking = false
 var isInAir = false
+var canAirDash = true	
 
 func _physics_process(delta: float) -> void:
 	#TEMP TEMP TEMP REMOVE LATER
@@ -43,7 +44,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		isInAir = true	
-		
+	if is_on_floor():
+		canAirDash = true
 		
 	if cooldown > 0:
 		cooldown -=delta	
@@ -53,8 +55,11 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 	if !isdashing and direction !=0:
 		flipped = sign(direction)
-	if Input.is_action_just_pressed("dash") and cooldown <= 0:
+	if Input.is_action_just_pressed("dash") and cooldown <= 0 and canAirDash:
 		start_dash()
+		if !is_on_floor() && canAirDash:
+			start_dash()
+			canAirDash = false
 	if isdashing:
 		dash_duration -= delta
 		velocity.x = flipped * impVelocity
