@@ -1,11 +1,19 @@
 [gd_scene load_steps=2 format=3 uid="uid://dyevxras5osrk"]
 
-[ext_resource type="Script" uid="uid://cq4l85fm8x6du" path="res://Scene/combo_creator.gd" id="1_7nk0m"]
+[ext_resource type="Script" uid="uid://cq4l85fm8x6du" path="res://Script/combo_creator.gd" id="1_7nk0m"]
 
 [node name="ComboCreator" type="Node2D"]
 script = ExtResource("1_7nk0m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ComboList" type="RichTextLabel" parent="."]
+offset_left = -329.0
+offset_top = -89.0
+offset_right = 373.0
+offset_bottom = -49.0
+text = "Last Button Pressed:"
+scroll_active = false
 
 [node name="Title" type="TextEdit" parent="."]
 offset_left = -353.0
@@ -15,10 +23,17 @@ offset_bottom = -124.0
 theme_override_font_sizes/font_size = 100
 text = "Combo Creator"
 editable = false
+emoji_menu_enabled = false
 
-[node name="ButtonPressed" type="TextEdit" parent="."]
-offset_left = -437.0
-offset_top = -46.0
-offset_right = -243.0
-offset_bottom = -8.0
-text = "Last Button Pressed: "
+[node name="Combo List" type="TextEdit" parent="."]
+offset_left = -398.0
+offset_top = 16.0
+offset_right = 373.0
+offset_bottom = 275.0
+text = "Combo List: "
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+wrap_mode = 1

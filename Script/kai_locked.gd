@@ -77,12 +77,11 @@ func _on_look_area_exited(area: Area2D) -> void:
 			isTracking = false	
 			animSprite.play("chase")
 			print("wait where did he go?")
-			await get_tree().create_timer(5.0).timeout
 			
 			if !lookCollider.shape.radius <=4500:
 				var subtractedRadius : float = lookCollider.shape.radius - 4500
 				lookCollider.shape.radius -= subtractedRadius
-			
+			await get_tree().create_timer(5.0).timeout
 			animSprite.play("Idle")
 		else:
 			isTracking = true	
@@ -92,6 +91,7 @@ func _on_look_area_exited(area: Area2D) -> void:
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
+		
 		isAttacking = true
 		animSprite.play("Attack")
 		print("DIE!! DIE!!")

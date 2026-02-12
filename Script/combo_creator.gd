@@ -1,6 +1,8 @@
 extends Node2D
 
 var inputSequence = []
+@onready var lastButtonPressed = $ButtonPressed
+@onready var comboList = $ComboList
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,6 +50,10 @@ func _process(delta: float) -> void:
 func record_input(action):
 		inputSequence.append(action)
 		print(action)
+
 		print(inputSequence)
 		if inputSequence.size() == 4:
+			var joined_string := "+ ".join(inputSequence) 
+			joined_string = "  [" + joined_string + "]  "
+			comboList.text += " " + joined_string
 			inputSequence =  []
