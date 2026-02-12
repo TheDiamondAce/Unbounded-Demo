@@ -48,6 +48,7 @@ size = Vector2(24, 74)
 [node name="Rai" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox") groups=["Player"]]
 z_index = 4
 script = ExtResource("1_4vrd6")
+impVelocity = 1300.0
 dashTime = 0.2
 hurtBox = NodePath("HurtBox")
 

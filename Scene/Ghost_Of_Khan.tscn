@@ -1,3 +1,213 @@
-[gd_scene format=3 uid="uid://crbpinc8mfcpo"]
+[gd_scene load_steps=47 format=3 uid="uid://crbpinc8mfcpo"]
+
+[ext_resource type="PackedScene" uid="uid://odd7vol2j6wq" path="res://Prefabs/Rai/rai.tscn" id="1_6ootx"]
+[ext_resource type="Script" uid="uid://o8abssm17ovl" path="res://Script/ghost_of_khan.gd" id="2_nm034"]
+[ext_resource type="Texture2D" uid="uid://b0oeh7ch47dpg" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0000.png" id="3_4s1lb"]
+[ext_resource type="Texture2D" uid="uid://tc6unicg72mg" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0001.png" id="4_vjqki"]
+[ext_resource type="Texture2D" uid="uid://bekps2wuo14jr" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0002.png" id="5_4uego"]
+[ext_resource type="Texture2D" uid="uid://bhwm0k6u3kk17" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0003.png" id="6_2glge"]
+[ext_resource type="Texture2D" uid="uid://dl8dsues1xtuh" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0004.png" id="7_qsxj6"]
+[ext_resource type="Texture2D" uid="uid://8declyco5ila" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0005.png" id="8_gfxuq"]
+[ext_resource type="Texture2D" uid="uid://bnsi50esscroy" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0006.png" id="9_82in8"]
+[ext_resource type="Texture2D" uid="uid://qq0ac34g2ais" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0007.png" id="10_cbuio"]
+[ext_resource type="Texture2D" uid="uid://cbw0e5k6jqnto" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0008.png" id="11_t7quf"]
+[ext_resource type="Texture2D" uid="uid://dxqapr2jqmqv4" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0009.png" id="12_eoxmb"]
+[ext_resource type="Texture2D" uid="uid://7kn6xnqcyaj4" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0010.png" id="13_ebo6r"]
+[ext_resource type="Texture2D" uid="uid://bywgk3iexljqf" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0011.png" id="14_x05ba"]
+[ext_resource type="Texture2D" uid="uid://dy7880iwgj4uj" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0012.png" id="15_sup5a"]
+[ext_resource type="Texture2D" uid="uid://dywsaire78pji" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0013.png" id="16_q5b5q"]
+[ext_resource type="Texture2D" uid="uid://b5x7rc03ey8to" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0014.png" id="17_hbovg"]
+[ext_resource type="Texture2D" uid="uid://bggms1vico4wn" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0015.png" id="18_6xrs8"]
+[ext_resource type="Texture2D" uid="uid://bjd72jl1ea264" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0016.png" id="19_iypah"]
+[ext_resource type="Texture2D" uid="uid://b0sw7evv2xyjs" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0017.png" id="20_b3wec"]
+[ext_resource type="Texture2D" uid="uid://chqnha4ygtcga" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0018.png" id="21_8wbpd"]
+[ext_resource type="Texture2D" uid="uid://domc8kt1pbfyu" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0019.png" id="22_g15q5"]
+[ext_resource type="Texture2D" uid="uid://brvkpqpli0gay" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0020.png" id="23_ni73w"]
+[ext_resource type="Texture2D" uid="uid://lj0o35545166" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0021.png" id="24_f2wcx"]
+[ext_resource type="Texture2D" uid="uid://bshx2byya5hmb" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0022.png" id="25_jnqvr"]
+[ext_resource type="Texture2D" uid="uid://hyrj0btphkc1" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0023.png" id="26_xhnjx"]
+[ext_resource type="Texture2D" uid="uid://bn2w1n2j42psn" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0024.png" id="27_1l8ex"]
+[ext_resource type="Texture2D" uid="uid://oknex2yl6c54" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0025.png" id="28_5macf"]
+[ext_resource type="Texture2D" uid="uid://dnoy3gbtl7hte" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0026.png" id="29_k46mt"]
+[ext_resource type="Texture2D" uid="uid://dx4tcrhm2kdek" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0027.png" id="30_tmvxr"]
+[ext_resource type="Texture2D" uid="uid://dsx515xktoauj" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0028.png" id="31_nssdi"]
+[ext_resource type="Texture2D" uid="uid://bfq033cqh8dgh" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0029.png" id="32_xpoqi"]
+[ext_resource type="Texture2D" uid="uid://stl0bbxer8sa" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0030.png" id="33_ki3tj"]
+[ext_resource type="Texture2D" uid="uid://dy3yvrqllq8yx" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0031.png" id="34_in5r7"]
+[ext_resource type="Texture2D" uid="uid://dilp3bbj84cup" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0032.png" id="35_6p0ts"]
+[ext_resource type="Texture2D" uid="uid://bo74537biay1y" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0033.png" id="36_t4fag"]
+[ext_resource type="Texture2D" uid="uid://c8dbydw0qyisb" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0034.png" id="37_82v18"]
+[ext_resource type="Texture2D" uid="uid://dcqaqjxf4bh8i" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0035.png" id="38_b7rw7"]
+[ext_resource type="Texture2D" uid="uid://cps025ttsq7qi" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0036.png" id="39_3k7f2"]
+[ext_resource type="Texture2D" uid="uid://cbnfksgx02wdi" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0037.png" id="40_hbaln"]
+[ext_resource type="Texture2D" uid="uid://c0gub03ke45fj" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0038.png" id="41_5ju7t"]
+[ext_resource type="Texture2D" uid="uid://dv487mxlfjgb2" path="res://images/Spritesheets/Ghost_Of_Khan/Starting_Pose/0039.png" id="42_a3kbr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6vt7"]
+size = Vector2(712, 616)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bu034"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4s1lb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vjqki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4uego")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2glge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qsxj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gfxuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_82in8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cbuio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_t7quf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_eoxmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ebo6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_x05ba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_sup5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_q5b5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hbovg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_6xrs8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_iypah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_b3wec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_8wbpd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_g15q5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ni73w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_f2wcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jnqvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_xhnjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_1l8ex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_5macf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_k46mt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_tmvxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_nssdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_xpoqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ki3tj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_in5r7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_6p0ts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_t4fag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_82v18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_b7rw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_3k7f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_hbaln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_5ju7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_a3kbr")
+}],
+"loop": true,
+"name": &"startPose",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ootx"]
+size = Vector2(4593, 136)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lf2ru"]
 
 [node name="GhostOfKhan" type="Node2D"]
+
+[node name="Rai" parent="." instance=ExtResource("1_6ootx")]
+position = Vector2(-375, 533)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 297)
+
+[node name="GhostOfKhan" type="CharacterBody2D" parent="."]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("2_nm034")
+
+[node name="hurtbox" type="CollisionShape2D" parent="GhostOfKhan"]
+position = Vector2(1404, 2008)
+shape = SubResource("RectangleShape2D_r6vt7")
+
+[node name="KhanAnimations" type="AnimatedSprite2D" parent="GhostOfKhan"]
+position = Vector2(1420, 1920)
+sprite_frames = SubResource("SpriteFrames_bu034")
+animation = &"startPose"
+frame_progress = 0.677678
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(7, 645)
+shape = SubResource("RectangleShape2D_6ootx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(6, 650)
+scale = Vector2(4595.75, 144)
+texture = SubResource("PlaceholderTexture2D_lf2ru")
