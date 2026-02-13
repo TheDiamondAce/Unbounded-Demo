@@ -15,6 +15,7 @@ size = Vector2(4599, 141)
 [node name="Rai" parent="." instance=ExtResource("1_vuswf")]
 physics_interpolation_mode = 1
 z_index = 5
+position = Vector2(556, -27)
 cooldownDuration = 0.6
 comboDuration = 1.5
 
@@ -31,6 +32,7 @@ texture = SubResource("PlaceholderTexture2D_p6jvd")
 
 [node name="Kai" parent="." instance=ExtResource("2_h7u5v")]
 position = Vector2(701, 501)
+hp = 100.0
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_8exbv")]
 player = NodePath("../Rai")
@@ -38,7 +40,7 @@ smoothing_distance = 2
 
 [node name="Beautiful-traditional-japanese-art" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(130, 310)
+position = Vector2(236, 295)
 scale = Vector2(0.43985, 0.392143)
 texture = ExtResource("8_k5eaa")
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dw5kpggqwmiun"]
+[gd_scene load_steps=11 format=3 uid="uid://dw5kpggqwmiun"]
 
 [ext_resource type="Script" uid="uid://cx0gum77ou03m" path="res://Script/kai_locked.gd" id="1_sjari"]
 [ext_resource type="Texture2D" uid="uid://d2c5q31jruki7" path="res://images/Spritesheets/Kai/Kai_Idle_Fighting.png" id="2_4vgcw"]
 [ext_resource type="Texture2D" uid="uid://cummce12gvtxl" path="res://images/Spritesheets/Kai/Kai_Temp_Slash.png" id="3_cdcvl"]
 [ext_resource type="Texture2D" uid="uid://xmae7pd485au" path="res://images/Spritesheets/Kai/Kai_Idle.png" id="4_uk1cd"]
 [ext_resource type="Texture2D" uid="uid://b2vwnyahh10nd" path="res://images/Spritesheets/Kai/Kai_Alt_Pose.png" id="5_wyyw6"]
+[ext_resource type="Texture2D" uid="uid://75nxw0h4atgi" path="res://images/Temp/openclipart-vectors-tombstone-159792_1920.png" id="6_4vgcw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_psoxu"]
 animations = [{
@@ -42,6 +43,14 @@ animations = [{
 "loop": true,
 "name": &"chase",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4vgcw")
+}],
+"loop": true,
+"name": &"temp_ded",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5eaa"]
@@ -51,7 +60,7 @@ size = Vector2(400, 580)
 radius = 4911.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8exbv"]
-radius = 490.918
+radius = 2160.21
 
 [node name="Kai" type="CharacterBody2D" node_paths=PackedStringArray("lookCollider")]
 scale = Vector2(0.1, 0.1)
@@ -60,7 +69,7 @@ lookCollider = NodePath("LookArea/lookRadius")
 
 [node name="Kai" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_psoxu")
-animation = &"chase"
+animation = &"temp_ded"
 
 [node name="hurtBox" type="CollisionShape2D" parent="."]
 position = Vector2(40, 10.001)
@@ -75,9 +84,6 @@ shape = SubResource("CircleShape2D_rl2l2")
 
 [node name="attack" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_8exbv")
-
-[node name="velocity" type="RayCast2D" parent="."]
-collide_with_bodies = false
 
 [connection signal="area_entered" from="LookArea" to="." method="_on_look_area_entered"]
 [connection signal="area_exited" from="LookArea" to="." method="_on_look_area_exited"]
