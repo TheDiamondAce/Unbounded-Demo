@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://odd7vol2j6wq"]
+[gd_scene load_steps=15 format=3 uid="uid://odd7vol2j6wq"]
 
 [ext_resource type="Script" uid="uid://g2xgxeb670ri" path="res://Script/PlayerController.gd" id="1_4vrd6"]
 [ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Animations/MC_Anim.tres" id="2_p1qhu"]
@@ -45,6 +45,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vrd6"]
 size = Vector2(24, 74)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1qhu"]
+size = Vector2(39, 12)
+
 [node name="Rai" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox") groups=["Player"]]
 z_index = 4
 script = ExtResource("1_4vrd6")
@@ -56,8 +59,7 @@ hurtBox = NodePath("HurtBox")
 position = Vector2(-5, 46)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_p1qhu")
-animation = &"idle"
-frame_progress = 0.42066
+animation = &"punch"
 offset = Vector2(-4.99975, -185)
 
 [node name="HurtBox" type="CollisionShape2D" parent="." groups=["Player"]]
@@ -76,3 +78,9 @@ visible = false
 visible = false
 position = Vector2(-5, 9)
 shape = SubResource("RectangleShape2D_4vrd6")
+
+[node name="AttackArea" type="Area2D" parent="." groups=["Player Attack"]]
+
+[node name="attackCollider" type="CollisionShape2D" parent="AttackArea" groups=["Player Attack"]]
+position = Vector2(11.5, -4)
+shape = SubResource("RectangleShape2D_p1qhu")
