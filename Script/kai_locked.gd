@@ -9,7 +9,7 @@ var isTracking = false
 var isAttacking = false
 var isHit = false
 @export var hp : float
-@onready var velocityArrow =$velocity
+
 
 
 # Rai variable refrences
@@ -101,7 +101,6 @@ func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
 		isAttacking = true
 		animSprite.play("Attack")
-		print("DIE!! DIE!!")
 	if area.is_in_group("Player Attack"):
 		hp_remove(200.0, 1000,45)
 		
@@ -145,12 +144,13 @@ func hp_remove(amount : float , knockback = null, angle = null, x_pos = null, y_
 		if angle !=null and knockback !=null:
 			var bearing = animSprite.flip_h
 			
-			if bearing == false:
+			if bearing == true:
 				knockback = -knockback
-			else: if bearing == true:
+			else: if bearing == false:
 				knockback = knockback
 			
 			velocity = Vector2.from_angle(angle) * knockback
+			move_and_slide()
 			print("DANG I GOT HIT!")
 			print(velocity)
 	return

@@ -8,11 +8,14 @@ extends CharacterBody2D
 @export var cooldownDuration : float
 
 @export_category("Hurt Box Variables")
-@export var hurtBox : CollisionShape2D
+@export var hurtBox : Shape2D
 
 @export_category("Action Variables")
 @export var isWeaving = false
 @export var comboDuration : float
+@export var attackArea : Area2D
+@export var hitbox_shape : CollisionShape2D
+@export var stats : Stats
  
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -28,17 +31,13 @@ var inputSequence = []
 var comboTimer = 0.0
 
 func _physics_process(delta: float) -> void:
-	 
 	#TEMP TEMP TEMP REMOVE LATER
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file("res://Scene/Level_0.tscn")
 		
 	if comboTimer >0:
 		comboTimer -= delta
-		
-		
 	animation()
-	collider_size()
 	
 	var direction := Input.get_axis("left", "right")
 		
@@ -102,7 +101,8 @@ func animation() -> void:
 	
 	#attack animation
 	if Input.is_action_just_pressed("attack"):
-			animSprite.play("punch")
+		animSprite.play("punch")
+			
 
 	#duck animations
 	if Input.is_action_pressed("duck"):
@@ -141,21 +141,7 @@ func animation() -> void:
 	if velocity.y > 0 and not is_on_floor() and !isdashing:
 		animSprite.play("falling")
 
-func collider_size():
-	if animSprite.animation == "duck":
-		hurtBox.scale.y = .68
-		hurtBox.scale.x =1
-		hurtBox.position= Vector2(-5,22)
-		
-	if animSprite.animation == "idle":
-		hurtBox.position = Vector2(-5,9)
-		hurtBox.scale.y = 1
-		hurtBox.scale.x = 1
-		
-	if animSprite.animation == "weave":
-		hurtBox.position = Vector2(-13,9)
-		hurtBox.scale.x = .5
-		
+
 func record_input(action):
 	if comboTimer <= 0:
 		inputSequence = []
@@ -178,3 +164,21 @@ func check_combos() -> void:
 		inputSequence = []
 	
 	pass
+
+func _input(event: InputEvent) -> void:
+	pass 
+	
+func collider_size():
+	if animSprite.animation == "duck":
+		hurtBox.scale.y = .68
+		hurtBox.scale.x =1
+		hurtBox.position= Vector2(-5,22)
+		
+	if animSprite.animation == "idle":
+		hurtBox.position = Vector2(-5,9)
+		hurtBox.scale.y = 1
+		hurtBox.scale.x = 1
+		
+	if animSprite.animation == "weave":
+		hurtBox.position = Vector2(-13,9)
+		hurtBox.scale.x = .5

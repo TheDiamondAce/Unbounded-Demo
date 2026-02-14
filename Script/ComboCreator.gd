@@ -1,4 +1,4 @@
-extends Node2D
+class_name ComboCreator extends Node2D
 
 var inputSequence = []
 @onready var lastButtonPressed = $ButtonPressed

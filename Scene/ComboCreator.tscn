@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dyevxras5osrk"]
 
-[ext_resource type="Script" uid="uid://cq4l85fm8x6du" path="res://Script/combo_creator.gd" id="1_7nk0m"]
+[ext_resource type="Script" uid="uid://cq4l85fm8x6du" path="res://Script/ComboCreator.gd" id="1_7nk0m"]
 
 [node name="ComboCreator" type="Node2D"]
 script = ExtResource("1_7nk0m")

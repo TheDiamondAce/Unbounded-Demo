@@ -48,12 +48,14 @@ size = Vector2(24, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1qhu"]
 size = Vector2(39, 12)
 
-[node name="Rai" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox") groups=["Player"]]
+[node name="Rai" type="CharacterBody2D" node_paths=PackedStringArray("attackArea") groups=["Player"]]
 z_index = 4
 script = ExtResource("1_4vrd6")
 impVelocity = 1300.0
 dashTime = 0.2
-hurtBox = NodePath("HurtBox")
+hurtBox = Object(CollisionShape2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-5, 9),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"shape":SubResource("RectangleShape2D_p6jvd"),"disabled":false,"one_way_collision":false,"one_way_collision_margin":1.0,"script":null)
+
+attackArea = NodePath("AttackArea")
 
 [node name="Rai_Animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(-5, 46)
@@ -81,6 +83,6 @@ shape = SubResource("RectangleShape2D_4vrd6")
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Player Attack"]]
 
-[node name="attackCollider" type="CollisionShape2D" parent="AttackArea" groups=["Player Attack"]]
+[node name="straightPunch" type="CollisionShape2D" parent="AttackArea" groups=["Player Attack"]]
 position = Vector2(11.5, -4)
 shape = SubResource("RectangleShape2D_p1qhu")
