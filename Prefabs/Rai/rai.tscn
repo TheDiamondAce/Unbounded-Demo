@@ -1,7 +1,22 @@
-[gd_scene load_steps=15 format=3 uid="uid://odd7vol2j6wq"]
+[gd_scene load_steps=19 format=3 uid="uid://odd7vol2j6wq"]
 
 [ext_resource type="Script" uid="uid://g2xgxeb670ri" path="res://Script/PlayerController.gd" id="1_4vrd6"]
+[ext_resource type="Script" path="res://Script/Stats.gd" id="2_0xflu"]
 [ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Animations/MC_Anim.tres" id="2_p1qhu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1qhu"]
+radius = 563.55
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nqr50"]
+
+[sub_resource type="Resource" id="Resource_nqr50"]
+script = ExtResource("2_0xflu")
+base_max_health = 100.0
+base_defense = 10.0
+base_attack = 10.0
+experience = 0.0
+faction = 0
+metadata/_custom_type_script = "uid://dbbq8xaosx5u7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jvd"]
 size = Vector2(24, 74)
@@ -53,9 +68,10 @@ z_index = 4
 script = ExtResource("1_4vrd6")
 impVelocity = 1300.0
 dashTime = 0.2
-hurtBox = Object(CollisionShape2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-5, 9),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"shape":SubResource("RectangleShape2D_p6jvd"),"disabled":false,"one_way_collision":false,"one_way_collision_margin":1.0,"script":null)
-
+hurtBox = SubResource("CircleShape2D_p1qhu")
 attackArea = NodePath("AttackArea")
+hitbox_shape = SubResource("CircleShape2D_nqr50")
+stats = SubResource("Resource_nqr50")
 
 [node name="Rai_Animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(-5, 46)
@@ -65,6 +81,7 @@ animation = &"punch"
 offset = Vector2(-4.99975, -185)
 
 [node name="HurtBox" type="CollisionShape2D" parent="." groups=["Player"]]
+visible = false
 position = Vector2(-5, 9)
 shape = SubResource("RectangleShape2D_p6jvd")
 
@@ -82,6 +99,7 @@ position = Vector2(-5, 9)
 shape = SubResource("RectangleShape2D_4vrd6")
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Player Attack"]]
+visible = false
 
 [node name="straightPunch" type="CollisionShape2D" parent="AttackArea" groups=["Player Attack"]]
 position = Vector2(11.5, -4)

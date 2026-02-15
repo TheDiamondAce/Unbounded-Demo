@@ -1,11 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://dw5kpggqwmiun"]
+[gd_scene load_steps=15 format=3 uid="uid://dw5kpggqwmiun"]
 
 [ext_resource type="Script" uid="uid://cx0gum77ou03m" path="res://Script/kai_locked.gd" id="1_sjari"]
 [ext_resource type="Texture2D" uid="uid://d2c5q31jruki7" path="res://images/Spritesheets/Kai/Kai_Idle_Fighting.png" id="2_4vgcw"]
+[ext_resource type="Script" path="res://Script/Stats.gd" id="2_cdcvl"]
 [ext_resource type="Texture2D" uid="uid://cummce12gvtxl" path="res://images/Spritesheets/Kai/Kai_Temp_Slash.png" id="3_cdcvl"]
 [ext_resource type="Texture2D" uid="uid://xmae7pd485au" path="res://images/Spritesheets/Kai/Kai_Idle.png" id="4_uk1cd"]
 [ext_resource type="Texture2D" uid="uid://b2vwnyahh10nd" path="res://images/Spritesheets/Kai/Kai_Alt_Pose.png" id="5_wyyw6"]
 [ext_resource type="Texture2D" uid="uid://75nxw0h4atgi" path="res://images/Temp/openclipart-vectors-tombstone-159792_1920.png" id="6_4vgcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk1cd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wyyw6"]
+
+[sub_resource type="Resource" id="Resource_2d1fn"]
+script = ExtResource("2_cdcvl")
+base_max_health = 100.0
+base_defense = 10.0
+base_attack = 10.0
+experience = 0.0
+faction = 1
+metadata/_custom_type_script = "uid://dbbq8xaosx5u7"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_psoxu"]
 animations = [{
@@ -62,16 +76,21 @@ radius = 4911.02
 [sub_resource type="CircleShape2D" id="CircleShape2D_8exbv"]
 radius = 2160.21
 
-[node name="Kai" type="CharacterBody2D" node_paths=PackedStringArray("lookCollider")]
+[node name="Kai" type="CharacterBody2D" node_paths=PackedStringArray("lookCollider", "attackArea")]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_sjari")
 lookCollider = NodePath("LookArea/lookRadius")
+hurtBox = SubResource("RectangleShape2D_uk1cd")
+attackArea = NodePath("AttackArea")
+hitbox_shape = SubResource("CircleShape2D_wyyw6")
+stats = SubResource("Resource_2d1fn")
 
 [node name="Kai" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_psoxu")
 animation = &"temp_ded"
 
 [node name="hurtBox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(40, 10.001)
 shape = SubResource("RectangleShape2D_k5eaa")
 

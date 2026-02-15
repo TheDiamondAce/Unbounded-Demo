@@ -21,6 +21,15 @@ var isHit = false
 @export var arrow_scale: float = 10
 @export var min_arrow_len: float = 10
 
+
+@export_category("Hurt Box Variables")
+@export var hurtBox : Shape2D
+
+@export_category("Action Variables")
+@export var attackArea : Area2D
+@export var hitbox_shape : Shape2D
+@export var stats : Stats
+
 var dash_duration = 0
 var cooldown = 0
 var isdashing = false

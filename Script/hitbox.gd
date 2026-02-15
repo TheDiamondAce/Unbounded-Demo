@@ -23,6 +23,7 @@ func _ready() -> void:
 	if shape:
 		var collision_shape = CollisionShape2D.new()
 		collision_shape.shape = shape
+		add_child(collision_shape)
 	
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1,false)

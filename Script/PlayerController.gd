@@ -14,7 +14,7 @@ extends CharacterBody2D
 @export var isWeaving = false
 @export var comboDuration : float
 @export var attackArea : Area2D
-@export var hitbox_shape : CollisionShape2D
+@export var hitbox_shape : Shape2D
 @export var stats : Stats
  
 const SPEED = 300.0
@@ -166,6 +166,9 @@ func check_combos() -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack") and not event.is_echo():
+		var hitbox = Hitbox.new(stats, 0.5, hitbox_shape)
+		add_child(hitbox)
 	pass 
 	
 func collider_size():
