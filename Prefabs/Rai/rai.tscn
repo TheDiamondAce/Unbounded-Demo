@@ -1,106 +1,445 @@
-[gd_scene load_steps=19 format=3 uid="uid://odd7vol2j6wq"]
+[gd_scene load_steps=17 format=3 uid="uid://odd7vol2j6wq"]
 
 [ext_resource type="Script" uid="uid://g2xgxeb670ri" path="res://Script/PlayerController.gd" id="1_4vrd6"]
-[ext_resource type="Script" path="res://Script/Stats.gd" id="2_0xflu"]
 [ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Animations/MC_Anim.tres" id="2_p1qhu"]
+[ext_resource type="Script" uid="uid://bavd6dhhy4if6" path="res://Script/healthbar.gd" id="4_0xflu"]
+[ext_resource type="Script" uid="uid://73xxg0mh51c4" path="res://Script/MyHitbox.gd" id="4_nqr50"]
+[ext_resource type="Script" uid="uid://bi8e7iays2vyf" path="res://Script/MyHurtBox.gd" id="5_nqr50"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p1qhu"]
-radius = 563.55
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xflu"]
+size = Vector2(0, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nqr50"]
-
-[sub_resource type="Resource" id="Resource_nqr50"]
-script = ExtResource("2_0xflu")
-base_max_health = 100.0
-base_defense = 10.0
-base_attack = 10.0
-experience = 0.0
-faction = 0
-metadata/_custom_type_script = "uid://dbbq8xaosx5u7"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jvd"]
-size = Vector2(24, 74)
-
-[sub_resource type="Animation" id="Animation_vuswf"]
-resource_name = "Dash"
-
-[sub_resource type="Animation" id="Animation_h7u5v"]
-resource_name = "Duck"
-
-[sub_resource type="Animation" id="Animation_8exbv"]
-resource_name = "Hook"
-
-[sub_resource type="Animation" id="Animation_p6jvd"]
-resource_name = "Idle"
-
-[sub_resource type="Animation" id="Animation_rl2l2"]
-resource_name = "Jump"
-
-[sub_resource type="Animation" id="Animation_u42u6"]
-resource_name = "Kick"
-
-[sub_resource type="Animation" id="Animation_k5eaa"]
-resource_name = "Landing"
-
-[sub_resource type="Animation" id="Animation_vm4wn"]
-resource_name = "Weave"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_psoxu"]
-_data = {
-&"Dash": SubResource("Animation_vuswf"),
-&"Duck": SubResource("Animation_h7u5v"),
-&"Hook": SubResource("Animation_8exbv"),
-&"Idle": SubResource("Animation_p6jvd"),
-&"Jump": SubResource("Animation_rl2l2"),
-&"Kick": SubResource("Animation_u42u6"),
-&"Landing": SubResource("Animation_k5eaa"),
-&"Weave": SubResource("Animation_vm4wn")
+[sub_resource type="Animation" id="Animation_nqr50"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rai_Animation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"punch"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rai_Animation/MyHitbox/hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, -245)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rai_Animation/MyHitbox/hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rai_Animation/MyHitbox/hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rai_Animation/MyHitbox/hitbox:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rai_Animation/MyHitbox:damage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vrd6"]
-size = Vector2(24, 74)
+[sub_resource type="Animation" id="Animation_lwmko"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rai_Animation/MyHitbox/hitbox:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rai_Animation/MyHitbox/hitbox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rai_Animation/MyHitbox/hitbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -216.169)]
+}
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1qhu"]
-size = Vector2(39, 12)
+[sub_resource type="Animation" id="Animation_xj1f8"]
+resource_name = "nothing"
 
-[node name="Rai" type="CharacterBody2D" node_paths=PackedStringArray("attackArea") groups=["Player"]]
+[sub_resource type="Animation" id="Animation_0xflu"]
+resource_name = "punch"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rai_Animation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"punch"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rai_Animation/MyHitbox/hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(93.888, -250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rai_Animation/MyHitbox/hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rai_Animation/MyHitbox/hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rai_Animation/MyHitbox/hitbox:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(146.516, 40.4945)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rai_Animation/MyHitbox:damage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
+
+[sub_resource type="Animation" id="Animation_1f2ms"]
+resource_name = "kick"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rai_Animation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"kick"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rai_Animation/MyHitbox/hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(72.378, -216.169)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rai_Animation/MyHitbox/hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2.88503]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rai_Animation/MyHitbox/hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rai_Animation/MyHitbox/hitbox:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(161.369, 40.495)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rai_Animation/MyHitbox:damage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [60.0]
+}
+
+[sub_resource type="Animation" id="Animation_dscc0"]
+resource_name = "hook"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rai_Animation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hook"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rai_Animation/MyHitbox/hitbox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rai_Animation/MyHitbox/hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rai_Animation/MyHitbox/hitbox:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(47.2341, 43.3454)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rai_Animation/MyHitbox/hitbox:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128.405, -178.327)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rai_Animation/MyHitbox:damage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [40.0]
+}
+
+[sub_resource type="Animation" id="Animation_a7bn1"]
+resource_name = "duck"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rai_Animation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"duck"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xj1f8"]
+_data = {
+&"RESET": SubResource("Animation_nqr50"),
+&"duck": SubResource("Animation_a7bn1"),
+&"hook": SubResource("Animation_dscc0"),
+&"idle": SubResource("Animation_lwmko"),
+&"kick": SubResource("Animation_1f2ms"),
+&"nothing": SubResource("Animation_xj1f8"),
+&"punch": SubResource("Animation_0xflu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqr50"]
+size = Vector2(20, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xj1f8"]
+size = Vector2(56, 4)
+
+[node name="Rai" type="CharacterBody2D" node_paths=PackedStringArray("healthBar") groups=["Player"]]
 z_index = 4
 script = ExtResource("1_4vrd6")
 impVelocity = 1300.0
 dashTime = 0.2
-hurtBox = SubResource("CircleShape2D_p1qhu")
-attackArea = NodePath("AttackArea")
-hitbox_shape = SubResource("CircleShape2D_nqr50")
-stats = SubResource("Resource_nqr50")
+healthBar = NodePath("Health")
 
 [node name="Rai_Animation" type="AnimatedSprite2D" parent="."]
-position = Vector2(-5, 46)
+position = Vector2(0, 46)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_p1qhu")
 animation = &"punch"
 offset = Vector2(-4.99975, -185)
 
-[node name="HurtBox" type="CollisionShape2D" parent="." groups=["Player"]]
-visible = false
-position = Vector2(-5, 9)
-shape = SubResource("RectangleShape2D_p6jvd")
+[node name="MyHitbox" type="Area2D" parent="Rai_Animation"]
+scale = Vector2(1, 1)
+script = ExtResource("4_nqr50")
+metadata/_custom_type_script = "uid://73xxg0mh51c4"
 
-[node name="HitboxPlayer" type="AnimationPlayer" parent="."]
+[node name="hitbox" type="CollisionShape2D" parent="Rai_Animation/MyHitbox"]
+position = Vector2(-7.62939e-06, -245)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_0xflu")
+disabled = true
+debug_color = Color(1, 0.00779644, 0.0467475, 0.42)
+
+[node name="attack" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 46)
+scale = Vector2(0.2, 0.2)
+
+[node name="Health" type="ProgressBar" parent="."]
+offset_left = -55.0
+offset_top = -64.0
+offset_right = 54.0
+offset_bottom = -37.0
+script = ExtResource("4_0xflu")
+
+[node name="VisualRoot" type="Node2D" parent="."]
+
+[node name="FightingFrameData" type="AnimationPlayer" parent="VisualRoot"]
+root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_psoxu")
+&"": SubResource("AnimationLibrary_xj1f8")
 }
 
-[node name="detectionBox" type="Area2D" parent="." groups=["Player"]]
-visible = false
+[node name="MyHurtBox" type="Area2D" parent="."]
+script = ExtResource("5_nqr50")
+base_health = 500.0
+metadata/_custom_type_script = "uid://bi8e7iays2vyf"
 
-[node name="collider" type="CollisionShape2D" parent="detectionBox" groups=["Player"]]
-visible = false
-position = Vector2(-5, 9)
-shape = SubResource("RectangleShape2D_4vrd6")
+[node name="hurtArea" type="CollisionShape2D" parent="MyHurtBox"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_nqr50")
 
-[node name="AttackArea" type="Area2D" parent="." groups=["Player Attack"]]
-visible = false
-
-[node name="straightPunch" type="CollisionShape2D" parent="AttackArea" groups=["Player Attack"]]
-position = Vector2(11.5, -4)
-shape = SubResource("RectangleShape2D_p1qhu")
+[node name="floorCollider" type="CollisionShape2D" parent="." groups=["Player"]]
+position = Vector2(0, 46)
+shape = SubResource("RectangleShape2D_xj1f8")

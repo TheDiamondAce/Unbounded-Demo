@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5rhdgyx2krpj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1qhu"]
+size = Vector2(39, 12)
+
+[node name="straightPunch" type="CollisionShape2D" groups=["Player Attack"]]
+shape = SubResource("RectangleShape2D_p1qhu")

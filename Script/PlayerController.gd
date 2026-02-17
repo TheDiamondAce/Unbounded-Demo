@@ -1,21 +1,26 @@
 extends CharacterBody2D
 
 @onready var animSprite = $Rai_Animation 
+@onready var animationPlayer =$VisualRoot/FightingFrameData
+@onready var visualRoot = $VisualRoot
+@onready var myHitbox =$Rai_Animation/MyHitbox
+@onready var myHurtBox = $MyHurtBox
 
 @export_category("Dash Variables")
 @export var impVelocity : float
 @export var dashTime = .3
 @export var cooldownDuration : float
 
-@export_category("Hurt Box Variables")
-@export var hurtBox : Shape2D
+@export_category("Stats Variables")
+@export var healthBar : ProgressBar
 
 @export_category("Action Variables")
 @export var isWeaving = false
 @export var comboDuration : float
 @export var attackArea : Area2D
-@export var hitbox_shape : Shape2D
-@export var stats : Stats
+#@onready var straightPunch = preload("res://FrameDataSystemV1/Rai/straight_punch.tscn")
+#@export var hitbox_shape : CollisionShape2D
+#@export var stats : Stats
  
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -23,14 +28,38 @@ const JUMP_VELOCITY = -400.0
 var dash_duration = 0
 var cooldown = 0
 var isdashing = false
+var isAttacking = false
 var flipped = 1	
 var isDucking = false
 var isInAir = false
+var isIdle = false
 var canAirDash = true
 var inputSequence = []	
 var comboTimer = 0.0
+var direction
+var direction_offset = 7
+var currentHealth
 
+func _ready() -> void:
+	take_damage(50)
+	#to test out if healthbar works or not
 func _physics_process(delta: float) -> void:
+	healthBar.on_health_changed(currentHealth)
+	#fix this ungodly hitbox thingy whatever ts is and make it more better. This is just to fix the fact that hitbox doesnt flip properly.
+	if animSprite.flip_h == true:
+		myHitbox.scale.x = -1
+	if animSprite.flip_h == false:
+		myHitbox.scale.x = 1
+		
+	if direction == -1:
+		direction_offset = direction*7 - 9
+	if direction == 1:
+		direction_offset = direction*7
+			
+	if isAttacking:
+		await get_tree().create_timer(.2).timeout
+		isAttacking = false
+	
 	#TEMP TEMP TEMP REMOVE LATER
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file("res://Scene/Level_0.tscn")
@@ -39,7 +68,7 @@ func _physics_process(delta: float) -> void:
 		comboTimer -= delta
 	animation()
 	
-	var direction := Input.get_axis("left", "right")
+	direction = Input.get_axis("left", "right")
 		
 	if direction:
 			velocity.x = direction * SPEED
@@ -97,20 +126,24 @@ func end_dash() -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 
 func animation() -> void:
-	
-	
+	if !isAttacking:
+		animationPlayer.play("idle")
 	#attack animation
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and is_on_floor():
+		isAttacking = true
+		animationPlayer.play("punch")
 		animSprite.play("punch")
 			
 
 	#duck animations
 	if Input.is_action_pressed("duck"):
-		if Input.is_action_just_pressed("attack"):
+		if Input.is_action_just_pressed("attack") and is_on_floor():
+			isAttacking = true
 			animSprite.play("hook")
-		else: if Input.is_action_pressed("dodge_left"):
+			animationPlayer.play("hook")
+		else: if Input.is_action_pressed("dodge_left") and !isAttacking:
 			animSprite.play("duck_left")
-		else: if Input.is_action_pressed("dodge_right"):
+		else: if Input.is_action_pressed("dodge_right") and !isAttacking:
 			animSprite.play("duck_right")
 		else:
 			animSprite.play("duck")
@@ -118,11 +151,13 @@ func animation() -> void:
 	#weave animations		
 	if Input.is_action_pressed("weave"):
 		isWeaving = true	
-		if Input.is_action_just_pressed("attack"):
+		if Input.is_action_just_pressed("attack") and is_on_floor():
+			isAttacking = true
 			animSprite.play("kick")
-		else: if Input.is_action_pressed("dodge_left"):
+			animationPlayer.play("kick")
+		else: if Input.is_action_pressed("dodge_left") and !isAttacking:
 			animSprite.play("weave_left")
-		else: if Input.is_action_pressed("dodge_right"):
+		else: if Input.is_action_pressed("dodge_right") and !isAttacking:
 			animSprite.play("weave_right")
 		else:
 			animSprite.play("weave")
@@ -141,6 +176,12 @@ func animation() -> void:
 	if velocity.y > 0 and not is_on_floor() and !isdashing:
 		animSprite.play("falling")
 
+func set_health(amount : float):
+	currentHealth = amount
+	healthBar.set_health(currentHealth)
+	
+func take_damage(amount: float):
+	currentHealth -= amount
 
 func record_input(action):
 	if comboTimer <= 0:
@@ -166,22 +207,15 @@ func check_combos() -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack") and not event.is_echo():
-		var hitbox = Hitbox.new(stats, 0.5, hitbox_shape)
-		add_child(hitbox)
+	if event.is_action_pressed("attack") and not event.is_echo() and is_on_floor():
+		"if isWeaving:
+			var hitbox = Hitbox.new(stats,straightPunch, direction_offset, 4, .15)
+			add_child(hitbox)
+		if isDucking:
+			var hitbox = Hitbox.new(stats, straightPunch, direction_offset, 10, .15)
+			add_child(hitbox)
+		if  isIdle:
+			var hitbox = Hitbox.new(stats, straightPunch, direction_offset, -6, .15)
+			add_child(hitbox)"
 	pass 
 	
-func collider_size():
-	if animSprite.animation == "duck":
-		hurtBox.scale.y = .68
-		hurtBox.scale.x =1
-		hurtBox.position= Vector2(-5,22)
-		
-	if animSprite.animation == "idle":
-		hurtBox.position = Vector2(-5,9)
-		hurtBox.scale.y = 1
-		hurtBox.scale.x = 1
-		
-	if animSprite.animation == "weave":
-		hurtBox.position = Vector2(-13,9)
-		hurtBox.scale.x = .5

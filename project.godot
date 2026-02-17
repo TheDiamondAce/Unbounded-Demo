@@ -29,6 +29,11 @@ project/assembly_name="Unbounded"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+Enemy=""
+Player=""
+
 [input]
 
 ui_left={
@@ -124,6 +129,7 @@ restart={
 
 [layer_names]
 
+2d_render/layer_1="player"
 2d_physics/layer_1="player_hurtbox left dodge"
 2d_physics/layer_2="player_hurtbox middle"
 2d_physics/layer_3="player_hurtbox right"

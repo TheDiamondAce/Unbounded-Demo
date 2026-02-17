@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
-
+@onready var animSprite = $KhanAnimations
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 
+func _ready() -> void:
+	animSprite.play("Start")
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

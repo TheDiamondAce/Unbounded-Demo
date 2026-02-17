@@ -23,12 +23,11 @@ var isHit = false
 
 
 @export_category("Hurt Box Variables")
-@export var hurtBox : Shape2D
+@export var hurtBox : CollisionShape2D
 
 @export_category("Action Variables")
-@export var attackArea : Area2D
-@export var hitbox_shape : Shape2D
-@export var stats : Stats
+@export var attackArea = preload("res://FrameDataSystemV1/Kai/attack_area.tscn")
+@onready var attack = preload("res://FrameDataSystemV1/Kai/attack_big.tscn")
 
 var dash_duration = 0
 var cooldown = 0
@@ -42,6 +41,8 @@ var direction = 0
 #Create a raycast or line2d tommorow displaying velocity so its easier to debug knockback etc.
 #this script is to make it feel like your the worst at the game, both offensively and defensively.
 func _physics_process(delta: float) -> void:
+
+		
 	queue_redraw()
 	# Add the gravity.
 	if not is_on_floor():
@@ -84,6 +85,7 @@ func _on_look_area_entered(area: Area2D) -> void:
 			lookCollider.shape.radius +=addedRadius
 		animSprite.play("Locked")
 		print("YOUR IN MY FIELD NOW!!!")
+		isAttacking = true
 	else:
 		isTracking = false
 		animSprite.play("Idle")
@@ -101,6 +103,7 @@ func _on_look_area_exited(area: Area2D) -> void:
 			if !lookCollider.shape.radius <=4500:
 				var subtractedRadius : float = lookCollider.shape.radius - 4500
 				lookCollider.shape.radius -= subtractedRadius
+				isAttacking = false	
 			await get_tree().create_timer(5.0).timeout
 			animSprite.play("Idle")
 		pass # Replace with function body.
@@ -108,10 +111,10 @@ func _on_look_area_exited(area: Area2D) -> void:
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
-		isAttacking = true
 		animSprite.play("Attack")
-	if area.is_in_group("Player Attack"):
-		hp_remove(200.0, 1000,45)
+		print("DIE DIE DIE")
+	#if area.is_in_group("Player Attack"):
+	#hp_remove(200.0, 1000,45)
 		
 	
 	pass # Replace with function body.
@@ -126,7 +129,7 @@ func _on_attack_area_area_exited(area: Area2D) -> void:
 		
 	pass # Replace with function body.
 
-func hp_remove(amount : float , knockback = null, angle = null, x_pos = null, y_pos = null):
+"""func hp_remove(amount : float , knockback = null, angle = null, x_pos = null, y_pos = null):
 	isHit = true
 	isTracking = false
 	
@@ -162,7 +165,7 @@ func hp_remove(amount : float , knockback = null, angle = null, x_pos = null, y_
 			move_and_slide()
 			print("DANG I GOT HIT!")
 			print(velocity)
-	return
+	return"""
 	
 func _draw():
 	if velocity.length() <0.1:

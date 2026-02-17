@@ -1,0 +1,32 @@
+extends Node
+
+@onready var animation_player := $AnimationPlayer
+@onready var sprite :=$iHurt
+var isDamage=false
+var current_health
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if isDamage == false:
+		animation_player.play("idle")
+
+	pass
+	
+func take_damage(amount: float) -> void:
+	animation_player.play("hurt")
+	print("Damage: ", amount)
+	isDamage = true
+	await get_tree().create_timer(0.25).timeout
+	current_health -= amount
+	animation_player.play("idle")
+	if current_health <=0:
+		queue_free()
+
+func set_health(amount: float) -> void:
+	current_health = amount
+	pass

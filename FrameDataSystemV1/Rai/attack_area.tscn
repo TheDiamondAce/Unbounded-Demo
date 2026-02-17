@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw6se1yoon6k3"]
+
+[ext_resource type="PackedScene" uid="uid://c5rhdgyx2krpj" path="res://FrameDataSystemV1/Rai/straight_punch.tscn" id="1_bg8qn"]
+
+[node name="AttackArea" type="Area2D" groups=["Player Attack"]]
+
+[node name="straightPunch" parent="." instance=ExtResource("1_bg8qn")]

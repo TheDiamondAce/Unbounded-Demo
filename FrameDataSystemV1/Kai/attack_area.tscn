@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs667e4gmgmdy"]
+
+[ext_resource type="PackedScene" uid="uid://fva3dmlm7jtc" path="res://FrameDataSystemV1/Kai/attack_big.tscn" id="1_c5dwv"]
+
+[node name="AttackArea" type="Area2D" groups=["Enemy"]]
+
+[node name="attack" parent="." groups=["Enemy"] instance=ExtResource("1_c5dwv")]
