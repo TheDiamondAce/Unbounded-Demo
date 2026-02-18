@@ -75,6 +75,8 @@ script = ExtResource("1_2247a")
 [node name="MyHurtBox" type="Area2D" parent="."]
 script = ExtResource("2_fe3rk")
 base_health = 250.0
+collisionLayer = 5
+collisionMask = 3
 metadata/_custom_type_script = "uid://bi8e7iays2vyf"
 
 [node name="hurtin" type="CollisionShape2D" parent="MyHurtBox"]

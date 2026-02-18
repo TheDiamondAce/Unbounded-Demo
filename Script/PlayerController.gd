@@ -18,6 +18,7 @@ extends CharacterBody2D
 @export var isWeaving = false
 @export var comboDuration : float
 @export var attackArea : Area2D
+@export var maxComboLength : int
 #@onready var straightPunch = preload("res://FrameDataSystemV1/Rai/straight_punch.tscn")
 #@export var hitbox_shape : CollisionShape2D
 #@export var stats : Stats
@@ -39,11 +40,19 @@ var comboTimer = 0.0
 var direction
 var direction_offset = 7
 var currentHealth
+var isInCombo
+var comboList = ["CorkScrew"]
+var currentCombo
 
-func _ready() -> void:
-	take_damage(50)
+
 	#to test out if healthbar works or not
 func _physics_process(delta: float) -> void:
+	if currentCombo == "Corkscrew":
+		animationPlayer.play("corkscrew")
+		await get_tree().create_timer(0.5).timeout
+		currentCombo = ""
+	combo_excecute()
+	input()
 	healthBar.on_health_changed(currentHealth)
 	#fix this ungodly hitbox thingy whatever ts is and make it more better. This is just to fix the fact that hitbox doesnt flip properly.
 	if animSprite.flip_h == true:
@@ -88,7 +97,6 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		record_input("jump")
 	if !isdashing and direction !=0:
 		flipped = sign(direction)
 	if Input.is_action_just_pressed("dash") and cooldown <= 0 and canAirDash:
@@ -126,55 +134,57 @@ func end_dash() -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 
 func animation() -> void:
-	if !isAttacking:
-		animationPlayer.play("idle")
-	#attack animation
-	if Input.is_action_just_pressed("attack") and is_on_floor():
-		isAttacking = true
-		animationPlayer.play("punch")
-		animSprite.play("punch")
+	if !isInCombo:
+	
+		if !isAttacking:
+			animationPlayer.play("idle")
+		#attack animation
+		if Input.is_action_just_pressed("attack") and is_on_floor():
+			isAttacking = true
+			animationPlayer.play("punch")
+			animSprite.play("punch")
 			
 
-	#duck animations
-	if Input.is_action_pressed("duck"):
-		if Input.is_action_just_pressed("attack") and is_on_floor():
-			isAttacking = true
-			animSprite.play("hook")
-			animationPlayer.play("hook")
-		else: if Input.is_action_pressed("dodge_left") and !isAttacking:
-			animSprite.play("duck_left")
-		else: if Input.is_action_pressed("dodge_right") and !isAttacking:
-			animSprite.play("duck_right")
-		else:
-			animSprite.play("duck")
+		#duck animations
+		if Input.is_action_pressed("duck"):
+			if Input.is_action_just_pressed("attack") and is_on_floor():
+				isAttacking = true
+				animSprite.play("hook")
+				animationPlayer.play("hook")
+			else: if Input.is_action_pressed("dodge_left") and !isAttacking:
+				animSprite.play("duck_left")
+			else: if Input.is_action_pressed("dodge_right") and !isAttacking:
+				animSprite.play("duck_right")
+			else:
+				animSprite.play("duck")
 		
-	#weave animations		
-	if Input.is_action_pressed("weave"):
-		isWeaving = true	
-		if Input.is_action_just_pressed("attack") and is_on_floor():
-			isAttacking = true
-			animSprite.play("kick")
-			animationPlayer.play("kick")
-		else: if Input.is_action_pressed("dodge_left") and !isAttacking:
-			animSprite.play("weave_left")
-		else: if Input.is_action_pressed("dodge_right") and !isAttacking:
-			animSprite.play("weave_right")
-		else:
-			animSprite.play("weave")
-	#CODE IT IN LATER SO THAT IF YOUR WEAVING OR DODGING AND YOU PRESS DASH, IT WILL HAVE THE HOP ANIMATION OR DASH ANIMATION RESPECTIVELY, ELSE FOLLOW THIS CODE. MAKE IT GO THE DIRECTION THE WEAVE IS LEANING OR DUCK IS TOWARDS.
-	if isdashing and animSprite.flip_h == true and velocity.x > 0 or isdashing and animSprite.flip_h ==false and velocity.x <0 and !isWeaving and !isDucking:
-		animSprite.play("hop")	
+		#weave animations		
+		if Input.is_action_pressed("weave"):
+			isWeaving = true	
+			if Input.is_action_just_pressed("attack") and is_on_floor():
+				isAttacking = true
+				animSprite.play("kick")
+				animationPlayer.play("kick")
+			else: if Input.is_action_pressed("dodge_left") and !isAttacking:
+				animSprite.play("weave_left")
+			else: if Input.is_action_pressed("dodge_right") and !isAttacking:
+				animSprite.play("weave_right")
+			else:
+				animSprite.play("weave")
+		#CODE IT IN LATER SO THAT IF YOUR WEAVING OR DODGING AND YOU PRESS DASH, IT WILL HAVE THE HOP ANIMATION OR DASH ANIMATION RESPECTIVELY, ELSE FOLLOW THIS CODE. MAKE IT GO THE DIRECTION THE WEAVE IS LEANING OR DUCK IS TOWARDS.
+		if isdashing and animSprite.flip_h == true and velocity.x > 0 or isdashing and animSprite.flip_h ==false and velocity.x <0 and !isWeaving and !isDucking:
+			animSprite.play("hop")	
 		
-	else: if isdashing and animSprite.flip_h == true and velocity.x < 0 or isdashing and animSprite.flip_h ==false and velocity.x > 0:
-		animSprite.play("dash")	
-	# idle animations
-	else: if !Input.is_anything_pressed() and is_on_floor():
-		animSprite.play("idle")
+		else: if isdashing and animSprite.flip_h == true and velocity.x < 0 or isdashing and animSprite.flip_h ==false and velocity.x > 0:
+			animSprite.play("dash")	
+		# idle animations
+		else: if !Input.is_anything_pressed() and is_on_floor():
+			animSprite.play("idle")
 		
-	if velocity.y < 0 and not is_on_floor() and !isdashing:
-		animSprite.play("jumping")
-	if velocity.y > 0 and not is_on_floor() and !isdashing:
-		animSprite.play("falling")
+		if velocity.y < 0 and not is_on_floor() and !isdashing:
+			animSprite.play("jumping")
+		if velocity.y > 0 and not is_on_floor() and !isdashing:
+			animSprite.play("falling")
 
 func set_health(amount : float):
 	currentHealth = amount
@@ -183,8 +193,64 @@ func set_health(amount : float):
 func take_damage(amount: float):
 	currentHealth -= amount
 
+		
+func input() -> void:
+	if Input.is_action_just_pressed("left"):
+		record_input("left")
+	if Input.is_action_just_pressed("right"):
+		record_input("right")
+	if Input.is_action_just_pressed("jump"):
+		record_input("jump")
+	if Input.is_action_just_pressed("dash"):
+		record_input("dash")
+	if Input.is_action_just_pressed("attack"):
+			record_input("punch")
+
+	#duck animations
+	if Input.is_action_pressed("duck"):
+		if Input.is_action_just_pressed("attack"):
+			record_input("hook")
+		else: if Input.is_action_just_pressed("dodge_left"):
+			record_input("duck_left")
+		else: if Input.is_action_just_pressed("dodge_right"):
+			record_input("duck_right")
+		else: if Input.is_action_just_pressed("duck"):
+			record_input("duck")
+		
+	#weave animations		
+	if Input.is_action_pressed("weave"):
+		if Input.is_action_just_pressed("attack"):
+			record_input("kick")
+		else: if Input.is_action_just_pressed("dodge_left"):
+			record_input("weave_left")
+		else: if Input.is_action_just_pressed("dodge_right"):
+			record_input("weave_right")
+		else: if Input.is_action_just_pressed("weave"):
+			record_input("weave")
+		pass
+func start_combo_timer():
+	comboTimer = comboDuration
+	
+func check_combos() -> void:
+	if inputSequence == ["left", "right", "left", "right"] or inputSequence == ["right", "left", "right", "left"]:
+		isInCombo = true
+		currentCombo = "Corkscrew"
+		print(animationPlayer.current_animation)
+		print("CORKSCREWIN")
+		await get_tree().create_timer(0.5)
+		print(animationPlayer.current_animation)
+		comboTimer = 0
+		inputSequence = []
+		isInCombo = false
+	else: if inputSequence.size() == maxComboLength:
+		inputSequence = []
+	
+	pass
+func combo_excecute() -> void:
+	pass
+	
 func record_input(action):
-	if comboTimer <= 0:
+	if comboTimer <= 0 and !isInCombo:
 		inputSequence = []
 		start_combo_timer()
 		inputSequence.append(action)
@@ -196,26 +262,7 @@ func record_input(action):
 		print(action)
 		print(inputSequence)
 		check_combos()
-		
-func start_combo_timer():
-	comboTimer = comboDuration
-	
-func check_combos() -> void:
-	if inputSequence.size() == 4:
-		inputSequence = []
-	
-	pass
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack") and not event.is_echo() and is_on_floor():
-		"if isWeaving:
-			var hitbox = Hitbox.new(stats,straightPunch, direction_offset, 4, .15)
-			add_child(hitbox)
-		if isDucking:
-			var hitbox = Hitbox.new(stats, straightPunch, direction_offset, 10, .15)
-			add_child(hitbox)
-		if  isIdle:
-			var hitbox = Hitbox.new(stats, straightPunch, direction_offset, -6, .15)
-			add_child(hitbox)"
-	pass 
+
+
 	

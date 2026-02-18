@@ -129,11 +129,11 @@ restart={
 
 [layer_names]
 
-2d_render/layer_1="player"
-2d_physics/layer_1="player_hurtbox left dodge"
-2d_physics/layer_2="player_hurtbox middle"
-2d_physics/layer_3="player_hurtbox right"
-2d_physics/layer_4="enemy_hurtbox"
+2d_physics/layer_1="World"
+2d_physics/layer_2="player_hurtbox left dodge"
+2d_physics/layer_3="player_hurtbox middle"
+2d_physics/layer_4="player_hurtbox right"
+2d_physics/layer_5="enemy_hurtbox"
 
 [rendering]
 

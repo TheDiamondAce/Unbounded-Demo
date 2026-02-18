@@ -17,7 +17,6 @@ physics_interpolation_mode = 1
 z_index = 5
 position = Vector2(556, -27)
 cooldownDuration = 0.6
-comboDuration = 1.5
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

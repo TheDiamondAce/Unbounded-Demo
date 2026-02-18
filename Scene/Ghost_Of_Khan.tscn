@@ -151,7 +151,7 @@ default_base_scale = 1.0
 default_font_size = 25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6vt7"]
-size = Vector2(712, 616)
+size = Vector2(1144, 56)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bu034"]
 animations = [{
@@ -622,7 +622,7 @@ text = "I hurt man"
 position = Vector2(-415, 466)
 
 [node name="Rai" parent="." instance=ExtResource("1_6ootx")]
-position = Vector2(-310, 289)
+position = Vector2(-331, 80)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 297)
@@ -637,15 +637,16 @@ texture = ExtResource("2_vkxmr")
 scale = Vector2(0.25, 0.25)
 script = ExtResource("2_nm034")
 
-[node name="hurtbox" type="CollisionShape2D" parent="GhostOfKhan"]
-position = Vector2(1404, 2008)
+[node name="ground" type="CollisionShape2D" parent="GhostOfKhan"]
+position = Vector2(1416, 2288)
 shape = SubResource("RectangleShape2D_r6vt7")
 
 [node name="KhanAnimations" type="AnimatedSprite2D" parent="GhostOfKhan"]
 position = Vector2(1416, 1896)
 sprite_frames = SubResource("SpriteFrames_bu034")
-animation = &"Dash"
-frame_progress = 0.694975
+animation = &"Attack"
+frame = 24
+frame_progress = 0.37609
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 

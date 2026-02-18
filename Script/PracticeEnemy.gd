@@ -1,7 +1,7 @@
 extends Node
 
 @onready var animation_player := $AnimationPlayer
-@onready var sprite :=$iHurt
+@onready var sprite = $"."
 var isDamage=false
 var current_health
 
