@@ -3,7 +3,7 @@ class_name MyHurtBox extends Area2D
 @export var base_health : float
 @export var collisionLayer : int
 @export var collisionMask : int
-
+var isSelf
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#	connect("area_entered", self, _on_area_entered)
@@ -21,6 +21,11 @@ func _on_area_entered(hitbox: MyHitbox) -> void:
 	if hitbox == null:
 		return
 		
-	if owner.has_method("take_damage"):
+	if owner.is_in_group("Player") and hitbox.is_in_group("PlayerAttack"):
+		isSelf = true
+		return
+	if !owner.is_in_group("Player") and !hitbox.is_in_group("PlayerAttack"):
+		isSelf = false
+	else: if owner.has_method("take_damage") and !isSelf:
 		owner.take_damage(hitbox.damage)
 		

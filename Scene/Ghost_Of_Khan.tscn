@@ -1,7 +1,8 @@
-[gd_scene load_steps=151 format=3 uid="uid://crbpinc8mfcpo"]
+[gd_scene load_steps=152 format=3 uid="uid://crbpinc8mfcpo"]
 
 [ext_resource type="PackedScene" uid="uid://odd7vol2j6wq" path="res://Prefabs/Rai/rai.tscn" id="1_6ootx"]
 [ext_resource type="PackedScene" uid="uid://310aef0l3fu" path="res://Prefabs/Mis/i_hurt.tscn" id="1_dh5bd"]
+[ext_resource type="Script" uid="uid://bavd6dhhy4if6" path="res://Script/healthbar.gd" id="1_ixqiu"]
 [ext_resource type="Script" uid="uid://o8abssm17ovl" path="res://Script/ghost_of_khan.gd" id="2_nm034"]
 [ext_resource type="Texture2D" uid="uid://bgmr0aus85jl8" path="res://images/Spritesheets/Background/2151891391.jpg" id="2_vkxmr"]
 [ext_resource type="Texture2D" uid="uid://duohjn73grj2q" path="res://images/Spritesheets/Ghost_Of_Khan/attack/0000.png" id="4_dh5bd"]
@@ -618,8 +619,15 @@ offset_bottom = 509.0
 theme = SubResource("Theme_ixqiu")
 text = "I hurt man"
 
-[node name="iHurt" parent="." instance=ExtResource("1_dh5bd")]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -429.0
+offset_right = 4.0
+offset_bottom = 319.0
+script = ExtResource("1_ixqiu")
+
+[node name="iHurt" parent="." node_paths=PackedStringArray("healthBar") instance=ExtResource("1_dh5bd")]
 position = Vector2(-415, 466)
+healthBar = NodePath("../ProgressBar")
 
 [node name="Rai" parent="." instance=ExtResource("1_6ootx")]
 position = Vector2(-331, 80)

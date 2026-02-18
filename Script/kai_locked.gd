@@ -86,9 +86,6 @@ func _on_look_area_entered(area: Area2D) -> void:
 		animSprite.play("Locked")
 		print("YOUR IN MY FIELD NOW!!!")
 		isAttacking = true
-	else:
-		isTracking = false
-		animSprite.play("Idle")
 	pass # Replace with function body.
 	
 
@@ -129,43 +126,6 @@ func _on_attack_area_area_exited(area: Area2D) -> void:
 		
 	pass # Replace with function body.
 
-"""func hp_remove(amount : float , knockback = null, angle = null, x_pos = null, y_pos = null):
-	isHit = true
-	isTracking = false
-	
-	if hp <= 0:
-		print("im ded")
-		animSprite.play("temp_ded")
-		await get_tree().create_timer(5.0).timeout
-		queue_free()
-		
-	hp -= amount
-	print(hp)
-	# This if statment is to check if angle and knockback is not being used and is to check if x pos and/or y pos is used
-	if angle == null or knockback == null:
-		if x_pos != null or y_pos !=null:
-			if x_pos == null:
-				x_pos = 0
-			if y_pos == null:
-				y_pos = 0
-			velocity = Vector2(x_pos, y_pos)
-		velocity == velocity
-		
-	# This if statment is to check to see if x pos and y pos is not being used and if so, whether angle and knockback is being used?
-	else: if x_pos == null and y_pos == null:
-		if angle !=null and knockback !=null:
-			var bearing = animSprite.flip_h
-			
-			if bearing == true:
-				knockback = -knockback
-			else: if bearing == false:
-				knockback = knockback
-			
-			velocity = Vector2.from_angle(angle) * knockback
-			move_and_slide()
-			print("DANG I GOT HIT!")
-			print(velocity)
-	return"""
 	
 func _draw():
 	if velocity.length() <0.1:

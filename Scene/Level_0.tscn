@@ -16,6 +16,8 @@ size = Vector2(4599, 141)
 physics_interpolation_mode = 1
 z_index = 5
 position = Vector2(556, -27)
+impVelocity = 1300.0
+dashTime = 0.2
 cooldownDuration = 0.6
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

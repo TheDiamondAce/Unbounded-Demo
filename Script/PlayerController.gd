@@ -232,7 +232,7 @@ func start_combo_timer():
 	comboTimer = comboDuration
 	
 func check_combos() -> void:
-	if inputSequence == ["left", "right", "left", "right"] or inputSequence == ["right", "left", "right", "left"]:
+	if inputSequence == ["jump", "left", "right", "left", "right"] or inputSequence == ["jump", "right", "left", "right", "left"]:
 		isInCombo = true
 		currentCombo = "Corkscrew"
 		print(animationPlayer.current_animation)
