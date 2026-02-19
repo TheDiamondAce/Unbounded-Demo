@@ -25,7 +25,7 @@ func take_damage(amount: float) -> void:
 	isDamage = true
 	await get_tree().create_timer(0.25).timeout
 	current_health -= amount
-	healthBar.on_health_changed(amount)
+	healthBar.on_health_changed(current_health)
 	animation_player.play("idle")
 	if current_health <=0:
 		queue_free()

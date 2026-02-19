@@ -45,6 +45,7 @@ var comboList = ["CorkScrew"]
 var currentCombo
 
 
+
 	#to test out if healthbar works or not
 func _physics_process(delta: float) -> void:
 	if currentCombo == "Corkscrew":
@@ -57,8 +58,10 @@ func _physics_process(delta: float) -> void:
 	#fix this ungodly hitbox thingy whatever ts is and make it more better. This is just to fix the fact that hitbox doesnt flip properly.
 	if animSprite.flip_h == true:
 		myHitbox.scale.x = -1
+		myHurtBox.scale.x = -1
 	if animSprite.flip_h == false:
 		myHitbox.scale.x = 1
+		myHurtBox.scale.x = 1
 		
 	if direction == -1:
 		direction_offset = direction*7 - 9
@@ -147,6 +150,7 @@ func animation() -> void:
 
 		#duck animations
 		if Input.is_action_pressed("duck"):
+			animationPlayer.play("duck")
 			if Input.is_action_just_pressed("attack") and is_on_floor():
 				isAttacking = true
 				animSprite.play("hook")
@@ -160,6 +164,7 @@ func animation() -> void:
 		
 		#weave animations		
 		if Input.is_action_pressed("weave"):
+			animationPlayer.play("weave")
 			isWeaving = true	
 			if Input.is_action_just_pressed("attack") and is_on_floor():
 				isAttacking = true
@@ -174,12 +179,15 @@ func animation() -> void:
 		#CODE IT IN LATER SO THAT IF YOUR WEAVING OR DODGING AND YOU PRESS DASH, IT WILL HAVE THE HOP ANIMATION OR DASH ANIMATION RESPECTIVELY, ELSE FOLLOW THIS CODE. MAKE IT GO THE DIRECTION THE WEAVE IS LEANING OR DUCK IS TOWARDS.
 		if isdashing and animSprite.flip_h == true and velocity.x > 0 or isdashing and animSprite.flip_h ==false and velocity.x <0 and !isWeaving and !isDucking:
 			animSprite.play("hop")	
+			animationPlayer.play("hop")
 		
 		else: if isdashing and animSprite.flip_h == true and velocity.x < 0 or isdashing and animSprite.flip_h ==false and velocity.x > 0:
 			animSprite.play("dash")	
+			animationPlayer.play("dash")
 		# idle animations
 		else: if !Input.is_anything_pressed() and is_on_floor():
 			animSprite.play("idle")
+			animationPlayer.play("idle")
 		
 		if velocity.y < 0 and not is_on_floor() and !isdashing:
 			animSprite.play("jumping")
@@ -230,6 +238,23 @@ func input() -> void:
 		pass
 func start_combo_timer():
 	comboTimer = comboDuration
+
+"""func contains_sequence(seq : Array, pattern : Array) -> bool:
+	var size: = seq.size()
+	var patternSize: = pattern.size()
+	
+	if size > patternSize:
+		return false
+	for i in range(patternSize - size + 1):
+		var matches : = true
+		for j in range(size):
+			if seq[i + j] != pattern[j]:
+				matches = false
+				break
+			if matches:
+				return true
+	return false"""
+	
 	
 func check_combos() -> void:
 	if inputSequence == ["jump", "left", "right", "left", "right"] or inputSequence == ["jump", "right", "left", "right", "left"]:
