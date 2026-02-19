@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name GhostOfKhan extends CharacterBody2D
 
 @onready var animSprite = $KhanAnimations
 @onready var animationPlayer = $KhanAnimation
@@ -7,9 +7,12 @@ extends CharacterBody2D
 const SPEED = 0
 const JUMP_VELOCITY = -400.0
 var currentHealth
+var awaitingForControls = false
 
 #Hurtbox for the boss is really big so you can actually hit, make 3 modes where one is easy, one is normal, one is hard, for now its easy for easier understanding.
 func _ready() -> void:
+	if awaitingForControls:
+		velocity.x =0
 	currentHealth = currentHealth
 	animSprite.play("Start")
 func _physics_process(delta: float) -> void:
@@ -41,4 +44,15 @@ func take_damage(amount : float):
 		queue_free()
 	healthBar.on_health_changed(currentHealth)
 	
-	pass
+func awaitControls(yes : bool):
+	if yes:
+		awaitingForControls = true	
+		animSprite.play("Start")
+	if !yes:
+		awaitingForControls =false
+		animSprite.play("Dash")
+		velocity.x = -600
+		
+func emitFlip():
+	velocity.x = -velocity.x
+	animSprite.flip_h = !animSprite.flip_h

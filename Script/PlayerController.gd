@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @onready var animSprite = $Rai_Animation 
 @onready var animationPlayer =$VisualRoot/FightingFrameData
@@ -43,11 +43,15 @@ var currentHealth
 var isInCombo
 var comboList = ["CorkScrew"]
 var currentCombo
+var awaitingForControls = false
 
 
 
 	#to test out if healthbar works or not
 func _physics_process(delta: float) -> void:
+	if awaitingForControls:
+		velocity = Vector2.ZERO
+	
 	if currentCombo == "Corkscrew":
 		animationPlayer.play("corkscrew")
 		await get_tree().create_timer(0.5).timeout
@@ -197,6 +201,7 @@ func animation() -> void:
 func set_health(amount : float):
 	currentHealth = amount
 	healthBar.set_health(currentHealth)
+	healthBar.on_health_changed(currentHealth)
 	
 func take_damage(amount: float):
 	currentHealth -= amount
@@ -287,6 +292,17 @@ func record_input(action):
 		print(action)
 		print(inputSequence)
 		check_combos()
+		
+func awaitControls(yes : bool):
+	if yes:
+		self.set_physics_process(false)
+		awaitingForControls = true
+		animSprite.play("idle")
+		velocity = Vector2.ZERO
+	if !yes:
+		self.set_physics_process(true)
+		awaitingForControls = false
+		
 
 
 

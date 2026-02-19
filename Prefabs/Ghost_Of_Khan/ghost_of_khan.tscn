@@ -762,7 +762,7 @@ _data = {
 }
 
 [node name="GhostOfKhan" type="CharacterBody2D" node_paths=PackedStringArray("healthBar")]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.3, 0.3)
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("1_2pd2m")
@@ -776,7 +776,7 @@ shape = SubResource("RectangleShape2D_r6vt7")
 sprite_frames = SubResource("SpriteFrames_bu034")
 animation = &"Hurt"
 
-[node name="MyHurtBox" type="Area2D" parent="."]
+[node name="MyHurtBox" type="Area2D" parent="." groups=["GhostOfKhan"]]
 script = ExtResource("143_nkanr")
 base_health = 3000.0
 collisionLayer = 5

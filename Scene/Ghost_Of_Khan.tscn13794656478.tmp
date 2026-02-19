@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://crbpinc8mfcpo"]
+[gd_scene load_steps=11 format=3 uid="uid://crbpinc8mfcpo"]
 
 [ext_resource type="PackedScene" uid="uid://odd7vol2j6wq" path="res://Prefabs/Rai/rai.tscn" id="1_6ootx"]
 [ext_resource type="Script" uid="uid://bflxegr0hc6oq" path="res://Scene/GhostOfKhanStart.gd" id="1_lbhm0"]
 [ext_resource type="Texture2D" uid="uid://bgmr0aus85jl8" path="res://images/Spritesheets/Background/2151891391.jpg" id="2_vkxmr"]
-[ext_resource type="Script" uid="uid://cejyausqc7r0c" path="res://Scene/GhostOfKhanBounce.gd" id="5_aghwi"]
 [ext_resource type="PackedScene" uid="uid://1ume7pe6dssh" path="res://Prefabs/Ghost_Of_Khan/ghost_of_khan.tscn" id="5_pvrid"]
 
 [sub_resource type="Animation" id="Animation_lbhm0"]
@@ -12,7 +11,7 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Intro/RichTextLabel:text")
+tracks/0/path = NodePath("RichTextLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +26,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Intro/RichTextLabel:text")
+tracks/0/path = NodePath("RichTextLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -51,26 +50,15 @@ size = Vector2(4593, 136)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lf2ru"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuk6u"]
-size = Vector2(572, 1541)
-
 [node name="GhostOfKhan" type="Node2D"]
 script = ExtResource("1_lbhm0")
 
-[node name="Intro" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="IntroAnimation" type="AnimationPlayer" parent="Intro"]
-root_node = NodePath("../..")
+[node name="IntroAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_pvrid")
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Intro"]
-layout_mode = 0
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -82.0
 offset_top = 296.0
 offset_right = 106.0
@@ -93,8 +81,8 @@ position = Vector2(-540, 143)
 scale = Vector2(2.026, 1.22229)
 texture = ExtResource("2_vkxmr")
 
-[node name="GhostOfKhan" parent="." groups=["GhostOfKhan"] instance=ExtResource("5_pvrid")]
-position = Vector2(449, 374)
+[node name="GhostOfKhan" parent="." instance=ExtResource("5_pvrid")]
+position = Vector2(358, 490)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 collision_layer = 33
@@ -108,18 +96,3 @@ shape = SubResource("RectangleShape2D_6ootx")
 position = Vector2(6, 650)
 scale = Vector2(4595.75, 144)
 texture = SubResource("PlaceholderTexture2D_lf2ru")
-
-[node name="Bouncer" type="Area2D" parent="StaticBody2D2"]
-position = Vector2(358, 490)
-scale = Vector2(0.25, 0.25)
-script = ExtResource("5_aghwi")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2/Bouncer"]
-position = Vector2(2620, -380)
-shape = SubResource("RectangleShape2D_nuk6u")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2/Bouncer"]
-position = Vector2(-5508, -396)
-shape = SubResource("RectangleShape2D_nuk6u")
-
-[connection signal="area_entered" from="StaticBody2D2/Bouncer" to="StaticBody2D2/Bouncer" method="_on_bouncer_area_entered"]
