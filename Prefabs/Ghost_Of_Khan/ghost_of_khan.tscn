@@ -1,4 +1,4 @@
-[gd_scene load_steps=153 format=3 uid="uid://1ume7pe6dssh"]
+[gd_scene format=3 uid="uid://1ume7pe6dssh"]
 
 [ext_resource type="Script" uid="uid://o8abssm17ovl" path="res://Script/ghost_of_khan.gd" id="1_2pd2m"]
 [ext_resource type="Texture2D" uid="uid://duohjn73grj2q" path="res://images/Spritesheets/Ghost_Of_Khan/attack/0000.png" id="2_p1nc3"]
@@ -761,33 +761,35 @@ _data = {
 &"normal": SubResource("Animation_8w7g1")
 }
 
-[node name="GhostOfKhan" type="CharacterBody2D" node_paths=PackedStringArray("healthBar")]
+[node name="GhostOfKhan" type="CharacterBody2D" unique_id=1388935775 node_paths=PackedStringArray("healthBar")]
 scale = Vector2(0.3, 0.3)
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("1_2pd2m")
 healthBar = NodePath("HealthBar")
 
-[node name="ground" type="CollisionShape2D" parent="."]
+[node name="ground" type="CollisionShape2D" parent="." unique_id=2028082872]
+visible = false
 position = Vector2(-10, 362)
 shape = SubResource("RectangleShape2D_r6vt7")
 
-[node name="KhanAnimations" type="AnimatedSprite2D" parent="."]
+[node name="KhanAnimations" type="AnimatedSprite2D" parent="." unique_id=1230928129]
 sprite_frames = SubResource("SpriteFrames_bu034")
 animation = &"Hurt"
 
-[node name="MyHurtBox" type="Area2D" parent="." groups=["GhostOfKhan"]]
+[node name="MyHurtBox" type="Area2D" parent="." unique_id=49912006 groups=["GhostOfKhan"]]
+visible = false
 script = ExtResource("143_nkanr")
 base_health = 3000.0
 collisionLayer = 5
 collisionMask = 5
 metadata/_custom_type_script = "uid://bi8e7iays2vyf"
 
-[node name="hurtBox" type="CollisionShape2D" parent="MyHurtBox"]
+[node name="hurtBox" type="CollisionShape2D" parent="MyHurtBox" unique_id=1104838552]
 position = Vector2(60, 14)
 shape = SubResource("RectangleShape2D_2pd2m")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1388567199]
 offset_left = -188.0
 offset_top = -516.0
 offset_right = 256.0
@@ -797,7 +799,5 @@ max_value = 1000.0
 script = ExtResource("144_p1nc3")
 metadata/_custom_type_script = "uid://bavd6dhhy4if6"
 
-[node name="KhanAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_a7hro")
-}
+[node name="KhanAnimation" type="AnimationPlayer" parent="." unique_id=1005460611]
+libraries/ = SubResource("AnimationLibrary_a7hro")
