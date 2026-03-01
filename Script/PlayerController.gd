@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 	
 	#TEMP TEMP TEMP REMOVE LATER
 	if Input.is_action_just_pressed("restart"):
-		get_tree().change_scene_to_file("res://Scene/Level_0.tscn")
+		get_tree().change_scene_to_file("res://Scene/Ghost_Of_Khan.tscn")
 		
 	if comboTimer >0:
 		comboTimer -= delta
@@ -243,22 +243,6 @@ func input() -> void:
 		pass
 func start_combo_timer():
 	comboTimer = comboDuration
-
-"""func contains_sequence(seq : Array, pattern : Array) -> bool:
-	var size: = seq.size()
-	var patternSize: = pattern.size()
-	
-	if size > patternSize:
-		return false
-	for i in range(patternSize - size + 1):
-		var matches : = true
-		for j in range(size):
-			if seq[i + j] != pattern[j]:
-				matches = false
-				break
-			if matches:
-				return true
-	return false"""
 	
 	
 func check_combos() -> void:

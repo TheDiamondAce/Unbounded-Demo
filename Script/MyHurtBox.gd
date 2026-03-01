@@ -21,10 +21,11 @@ func _on_area_entered(hitbox: MyHitbox) -> void:
 	if hitbox == null:
 		return
 		
-	if owner.is_in_group("Player") and hitbox.is_in_group("PlayerAttack"):
+	if owner.is_in_group("Player") and hitbox.is_in_group("PlayerAttack") or owner.is_in_group("GhostOfKhan") and hitbox.is_in_group("GhostOfKhanAttack"):
 		isSelf = true
 		return
 	if !owner.is_in_group("Player") and !hitbox.is_in_group("PlayerAttack"):
+		#fix this
 		isSelf = false
 	else: if owner.has_method("take_damage") and !isSelf:
 		owner.take_damage(hitbox.damage)

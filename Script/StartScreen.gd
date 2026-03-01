@@ -1,8 +1,8 @@
 extends VideoStreamPlayer
 
 @onready var button =$"../Start"
-@onready var title = $"../tempTitle"
-@onready var level0 =  preload("res://Scene/Level_0.tscn")
+@onready var title = $"../RichTextLabel"
+@onready var level0 =  preload("res://Scene/Ghost_Of_Khan.tscn")
 @onready var startScene = $"."
 @onready var auraScene = $"../Sprite2D"
 @onready var startMusic = $"../StartScreenMusic"
