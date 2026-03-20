@@ -606,7 +606,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pd2m"]
-size = Vector2(920, 748)
+size = Vector2(650, 406.66663)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1nc3"]
+size = Vector2(190, 196.66667)
 
 [sub_resource type="Theme" id="Theme_p1nc3"]
 default_base_scale = 14.55
@@ -669,70 +672,58 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("KhanAnimations:frame")
+tracks/0/path = NodePath("KhanAnimations:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("KhanAnimations:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.516356, 0.397991, 1, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("KhanAnimations:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("KhanAnimations:position")
+tracks/2/path = NodePath("KhanAnimations:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("KhanAnimations:rotation")
+tracks/3/path = NodePath("KhanAnimations:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("KhanAnimations:offset")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.233333, 0.333333, 0.433333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(10, 0), Vector2(0, 0), Vector2(-10, 0)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("KhanAnimations:animation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("KhanAnimations:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -778,7 +769,6 @@ sprite_frames = SubResource("SpriteFrames_bu034")
 animation = &"Hurt"
 
 [node name="MyHurtBox" type="Area2D" parent="." unique_id=49912006 groups=["GhostOfKhan"]]
-visible = false
 script = ExtResource("143_nkanr")
 base_health = 3000.0
 collisionLayer = 5
@@ -786,8 +776,12 @@ collisionMask = 5
 metadata/_custom_type_script = "uid://bi8e7iays2vyf"
 
 [node name="hurtBox" type="CollisionShape2D" parent="MyHurtBox" unique_id=1104838552]
-position = Vector2(60, 14)
+position = Vector2(-38.333317, 183.33337)
 shape = SubResource("RectangleShape2D_2pd2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyHurtBox" unique_id=895964865]
+position = Vector2(-51.666664, -121.666664)
+shape = SubResource("RectangleShape2D_p1nc3")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1388567199]
 offset_left = -188.0

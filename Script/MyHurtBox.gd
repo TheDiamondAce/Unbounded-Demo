@@ -17,16 +17,19 @@ func _ready() -> void:
 func changeLayer(layer: int) -> void:
 	collision_layer = layer
 	
-func _on_area_entered(hitbox: MyHitbox) -> void:
+func _on_area_entered(hitbox: Area2D) -> void:
 	if hitbox == null:
 		return
 		
-	if owner.is_in_group("Player") and hitbox.is_in_group("PlayerAttack") or owner.is_in_group("GhostOfKhan") and hitbox.is_in_group("GhostOfKhanAttack"):
-		isSelf = true
-		return
-	if !owner.is_in_group("Player") and !hitbox.is_in_group("PlayerAttack"):
-		#fix this
-		isSelf = false
-	else: if owner.has_method("take_damage") and !isSelf:
-		owner.take_damage(hitbox.damage)
+	if hitbox.owner == self.owner:
+		return 
+		
+	for group in self.owner.get_groups():
+		if hitbox.owner.is_in_group(group):
+			return
+		
+
+	if hitbox is MyHitbox:
+		if owner.has_method("take_damage"):
+			owner.take_damage(hitbox.damage)
 		

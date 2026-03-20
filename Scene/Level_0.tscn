@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3tn0c3rftvgt"]
+[gd_scene format=3 uid="uid://c3tn0c3rftvgt"]
 
 [ext_resource type="PackedScene" uid="uid://odd7vol2j6wq" path="res://Prefabs/Rai/rai.tscn" id="1_vuswf"]
 [ext_resource type="PackedScene" uid="uid://dw5kpggqwmiun" path="res://Prefabs/Kai/kai.tscn" id="2_h7u5v"]
@@ -10,9 +10,9 @@ size = Vector2(4599, 141)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p6jvd"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1402844316]
 
-[node name="Rai" parent="." instance=ExtResource("1_vuswf")]
+[node name="Rai" parent="." unique_id=770712425 instance=ExtResource("1_vuswf")]
 physics_interpolation_mode = 1
 z_index = 5
 position = Vector2(556, -27)
@@ -20,38 +20,38 @@ impVelocity = 1300.0
 dashTime = 0.2
 cooldownDuration = 0.6
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1315514456]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1239408488]
 position = Vector2(100, 784)
 shape = SubResource("RectangleShape2D_vm4wn")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D" unique_id=819568026]
 position = Vector2(-15, -2.00001)
 scale = Vector2(4595.75, 144)
 texture = SubResource("PlaceholderTexture2D_p6jvd")
 
-[node name="Kai" parent="." instance=ExtResource("2_h7u5v")]
+[node name="Kai" parent="." unique_id=530459196 instance=ExtResource("2_h7u5v")]
 position = Vector2(701, 501)
-hp = 1e+11
+hp = 100000000000.0
 
-[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_8exbv")]
+[node name="PlayerCamera" parent="." unique_id=1797126055 node_paths=PackedStringArray("player") instance=ExtResource("7_8exbv")]
 player = NodePath("../Rai")
 smoothing_distance = 2
 
-[node name="Beautiful-traditional-japanese-art" type="Sprite2D" parent="."]
+[node name="Beautiful-traditional-japanese-art" type="Sprite2D" parent="." unique_id=1685028864]
 z_index = -1
 position = Vector2(236, 295)
 scale = Vector2(0.43985, 0.392143)
 texture = ExtResource("8_k5eaa")
 
-[node name="Beautiful-traditional-japanese-art" type="Sprite2D" parent="Beautiful-traditional-japanese-art"]
+[node name="Beautiful-traditional-japanese-art" type="Sprite2D" parent="Beautiful-traditional-japanese-art" unique_id=708375964]
 z_index = -1
 position = Vector2(3992.02, -206.922)
 scale = Vector2(0.949266, 0.860006)
 texture = ExtResource("8_k5eaa")
 
-[node name="Beautiful-traditional-japanese-art3" type="Sprite2D" parent="Beautiful-traditional-japanese-art"]
+[node name="Beautiful-traditional-japanese-art3" type="Sprite2D" parent="Beautiful-traditional-japanese-art" unique_id=1055832138]
 z_index = -1
 position = Vector2(-3749.01, -209.107)
 scale = Vector2(0.826476, 0.956254)

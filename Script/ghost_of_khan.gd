@@ -6,13 +6,12 @@ class_name GhostOfKhan extends CharacterBody2D
 @onready var intro = $"../Intro"
 
 @export var healthBar : HealthBar
-const SPEED = 600
+const SPEED = 600 
 const JUMP_VELOCITY = -400.0
 var currentHealth
 var awaitingForControls = false
 var isAttacking
 signal Attacking
-@onready var arrow = $"../ArrowNode/arrow"
 #Hurtbox for the boss is really big so you can actually hit, make 3 modes where one is easy, one is normal, one is hard, for now its easy for easier understanding.
 func _ready() -> void:
 	if awaitingForControls:
@@ -20,7 +19,7 @@ func _ready() -> void:
 	currentHealth = currentHealth
 	animSprite.play("Start")
 func _physics_process(delta: float) -> void:
-		
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -80,10 +79,15 @@ func awaitControls(yes : bool):
 func emitFlip():
 	velocity.x = -velocity.x
 	animSprite.flip_h = !animSprite.flip_h
-	"""if getChance():
-		animSprite.play("Attack") 
-		arrowNode.isAttacking(true)
+	if getChance():
+		animSprite.play("Attack")
+		arrowNode.start_attack()
+		isAttacking = true
+		await get_tree().create_timer(5.0)
+		isAttacking = false
 	if !getChance() && !isAttacking:
-		animSprite.play("Dash")"""
+		animSprite.play("Dash")
 func getChance() -> bool:
-	return randf() < (1.0/3.0)
+	if !isAttacking:
+		return randf() < (1.0/3.0)
+	return false

@@ -57,5 +57,22 @@ offset_bottom = 212.0
 theme = SubResource("Theme_2l4ar")
 text = "Unbounded"
 
+[node name="Skip" type="ProgressBar" parent="." unique_id=1254310894]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 491.0
+offset_right = 755.0
+offset_bottom = 518.0
+max_value = 3.0
+show_percentage = false
+
+[node name="TextEdit" type="TextEdit" parent="Skip" unique_id=1865270502]
+layout_mode = 0
+offset_left = 203.0
+offset_top = -55.0
+offset_right = 280.0
+offset_bottom = -12.0
+text = "Skipping"
+
 [connection signal="finished" from="VideoStreamPlayer" to="VideoStreamPlayer" method="_on_finished"]
 [connection signal="pressed" from="Start" to="VideoStreamPlayer" method="_on_button_pressed"]
