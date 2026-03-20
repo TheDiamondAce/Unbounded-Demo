@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://odd7vol2j6wq"]
+[gd_scene format=3 uid="uid://odd7vol2j6wq"]
 
 [ext_resource type="Script" uid="uid://g2xgxeb670ri" path="res://Script/PlayerController.gd" id="1_4vrd6"]
 [ext_resource type="SpriteFrames" uid="uid://7edxy6uay8ty" path="res://Animations/MC_Anim.tres" id="2_p1qhu"]
+[ext_resource type="PackedScene" uid="uid://ba8gjbvb0w36" path="res://Scene/youLose.tscn" id="2_xj1f8"]
 [ext_resource type="Script" uid="uid://bavd6dhhy4if6" path="res://Script/healthbar.gd" id="4_0xflu"]
 [ext_resource type="Script" uid="uid://73xxg0mh51c4" path="res://Script/MyHitbox.gd" id="4_nqr50"]
 [ext_resource type="Script" uid="uid://bi8e7iays2vyf" path="res://Script/MyHurtBox.gd" id="5_nqr50"]
@@ -883,60 +884,59 @@ size = Vector2(13.1965, 76.4256)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj1f8"]
 size = Vector2(56, 4)
 
-[node name="Rai" type="CharacterBody2D" node_paths=PackedStringArray("healthBar", "attackArea") groups=["Player"]]
+[node name="Rai" type="CharacterBody2D" unique_id=809542444 node_paths=PackedStringArray("healthBar", "attackArea") groups=["Player"]]
 z_index = 4
 script = ExtResource("1_4vrd6")
 impVelocity = 1200.0
 cooldownDuration = 1.2
 healthBar = NodePath("Health")
+youLoseScene = ExtResource("2_xj1f8")
 comboDuration = 1.5
 attackArea = NodePath("Rai_Animation/MyHitbox")
 maxComboLength = 5
 
-[node name="Rai_Animation" type="AnimatedSprite2D" parent="."]
+[node name="Rai_Animation" type="AnimatedSprite2D" parent="." unique_id=358703614]
 position = Vector2(0, 46)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_p1qhu")
 animation = &"punch"
 offset = Vector2(-4.99975, -185)
 
-[node name="MyHitbox" type="Area2D" parent="Rai_Animation" groups=["PlayerAttack"]]
+[node name="MyHitbox" type="Area2D" parent="Rai_Animation" unique_id=184283379 groups=["PlayerAttack"]]
 script = ExtResource("4_nqr50")
 collisionLayer = 3
 collisionMask = 5
 
-[node name="hitbox" type="CollisionShape2D" parent="Rai_Animation/MyHitbox"]
+[node name="hitbox" type="CollisionShape2D" parent="Rai_Animation/MyHitbox" unique_id=488582082]
 position = Vector2(-7.62939e-06, -245)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_0xflu")
 disabled = true
 debug_color = Color(1, 0.00779644, 0.0467475, 0.42)
 
-[node name="Health" type="ProgressBar" parent="."]
+[node name="Health" type="ProgressBar" parent="." unique_id=165112681]
 offset_left = -55.0
 offset_top = -64.0
 offset_right = 54.0
 offset_bottom = -37.0
 script = ExtResource("4_0xflu")
 
-[node name="VisualRoot" type="Node2D" parent="."]
+[node name="VisualRoot" type="Node2D" parent="." unique_id=633656374]
 
-[node name="FightingFrameData" type="AnimationPlayer" parent="VisualRoot"]
+[node name="FightingFrameData" type="AnimationPlayer" parent="VisualRoot" unique_id=1847831699]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_xj1f8")
-}
+libraries/ = SubResource("AnimationLibrary_xj1f8")
 
-[node name="MyHurtBox" type="Area2D" parent="." groups=["Player"]]
+[node name="MyHurtBox" type="Area2D" parent="." unique_id=1568915281 groups=["Player"]]
 script = ExtResource("5_nqr50")
 base_health = 500.0
 collisionLayer = 5
 collisionMask = 5
 
-[node name="hurtArea" type="CollisionShape2D" parent="MyHurtBox"]
+[node name="hurtArea" type="CollisionShape2D" parent="MyHurtBox" unique_id=979465258]
 position = Vector2(-2.08283, 16.7974)
 shape = SubResource("RectangleShape2D_nqr50")
 
-[node name="floorCollider" type="CollisionShape2D" parent="." groups=["Player"]]
+[node name="floorCollider" type="CollisionShape2D" parent="." unique_id=795154654 groups=["Player"]]
 position = Vector2(0, 46)
 shape = SubResource("RectangleShape2D_xj1f8")

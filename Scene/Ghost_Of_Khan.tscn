@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://odd7vol2j6wq" path="res://Prefabs/Rai/rai.tscn" id="1_6ootx"]
 [ext_resource type="Script" uid="uid://bflxegr0hc6oq" path="res://Script/GhostOfKhanStart.gd" id="1_lbhm0"]
 [ext_resource type="Texture2D" uid="uid://bgmr0aus85jl8" path="res://images/Spritesheets/Background/2151891391.jpg" id="2_vkxmr"]
-[ext_resource type="Script" uid="uid://ck53533rhjfox" path="res://Scene/arrow_node.gd" id="4_y7qrv"]
+[ext_resource type="Script" uid="uid://ck53533rhjfox" path="res://Script/arrow_node.gd" id="4_y7qrv"]
 [ext_resource type="Script" uid="uid://cejyausqc7r0c" path="res://Script/GhostOfKhanBounce.gd" id="5_aghwi"]
 [ext_resource type="PackedScene" uid="uid://1ume7pe6dssh" path="res://Prefabs/Ghost_Of_Khan/ghost_of_khan.tscn" id="5_pvrid"]
 [ext_resource type="PackedScene" uid="uid://dl18gjlvl0of2" path="res://Prefabs/arrow.tscn" id="6_q3fs2"]

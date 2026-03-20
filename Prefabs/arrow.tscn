@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dl18gjlvl0of2"]
 
 [ext_resource type="Script" uid="uid://1bbbsqq84otm" path="res://Script/arrows.gd" id="1_c7yig"]
-[ext_resource type="Texture2D" uid="uid://dp2yhaajnl1ur" path="res://images/Spritesheets/Katana.jpg" id="2_nc78r"]
 [ext_resource type="Script" uid="uid://73xxg0mh51c4" path="res://Script/MyHitbox.gd" id="2_nst05"]
+[ext_resource type="Texture2D" uid="uid://c2us1nxbt8d1v" path="res://images/Spritesheets/Katana_new (1).png" id="3_nc78r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nc78r"]
-size = Vector2(83.33333, 226.66667)
+size = Vector2(100, 336.66666)
 
 [node name="Arrow" type="Node2D" unique_id=1970330659 groups=["GhostOfKhan"]]
 scale = Vector2(0.3, 0.3)
@@ -19,11 +19,11 @@ damage = 200.0
 metadata/_custom_type_script = "uid://73xxg0mh51c4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MyHitbox" unique_id=1973609950 groups=["GhostOfKhan"]]
-position = Vector2(-1.666667, 3.3333304)
+position = Vector2(6.6666675, -1.6666658)
 shape = SubResource("RectangleShape2D_nc78r")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=343821591 groups=["GhostOfKhan"]]
+[node name="KatanaNew(1)" type="Sprite2D" parent="." unique_id=1849972917]
 rotation = 3.1415927
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_nc78r")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_nc78r")

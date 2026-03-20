@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ba8gjbvb0w36"]
+
+[ext_resource type="Script" uid="uid://bne3eeltuyr1m" path="res://Script/restart.gd" id="1_2qnpr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rippa"]
+blend_mode = 2
+
+[sub_resource type="Theme" id="Theme_pl3up"]
+default_font_size = 100
+
+[node name="YouLose" type="Control" unique_id=1555842450]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2qnpr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1357265226]
+material = SubResource("CanvasItemMaterial_rippa")
+layout_mode = 0
+offset_left = 40.0
+offset_top = 28.0
+offset_right = 964.0
+offset_bottom = 548.0
+theme = SubResource("Theme_pl3up")
+text = "YOU LOSE!
+Try Again?
+Press R to Restart"

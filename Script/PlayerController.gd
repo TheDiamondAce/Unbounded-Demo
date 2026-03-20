@@ -13,6 +13,7 @@ class_name Player extends CharacterBody2D
 
 @export_category("Stats Variables")
 @export var healthBar : ProgressBar
+@export var youLoseScene : PackedScene
 
 @export_category("Action Variables")
 @export var isWeaving = false
@@ -205,7 +206,8 @@ func set_health(amount : float):
 	
 func take_damage(amount: float):
 	currentHealth -= amount
-
+	if currentHealth <=0:
+		get_tree().change_scene_to_packed(youLoseScene)
 		
 func input() -> void:
 	if Input.is_action_just_pressed("left"):

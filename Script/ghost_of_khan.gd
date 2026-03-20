@@ -4,7 +4,7 @@ class_name GhostOfKhan extends CharacterBody2D
 @onready var animationPlayer = $KhanAnimation
 @onready var arrowNode = $"../ArrowNode"
 @onready var intro = $"../Intro"
-
+@onready var youWin = preload("res://Scene/youWin.tscn")
 @export var healthBar : HealthBar
 const SPEED = 600 
 const JUMP_VELOCITY = -400.0
@@ -12,14 +12,25 @@ var currentHealth
 var awaitingForControls = false
 var isAttacking
 signal Attacking
+var selfFlip
+var flipCountdown = 3
 #Hurtbox for the boss is really big so you can actually hit, make 3 modes where one is easy, one is normal, one is hard, for now its easy for easier understanding.
 func _ready() -> void:
+	youWin = preload("res://Scene/youWin.tscn")
 	if awaitingForControls:
 		velocity.x =0
 	currentHealth = currentHealth
 	animSprite.play("Start")
 func _physics_process(delta: float) -> void:
-	
+	if velocity.x < 0:
+		animSprite.flip_h = false
+	if velocity.x > 0:
+		animSprite.flip_h = true
+	if randf() < (1.0/300.0) && !awaitingForControls:
+		emitFlip()
+	if isAttacking && !awaitingForControls:
+		if randf() < (1.0/250.0):
+			emitFlip()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -59,8 +70,9 @@ func take_damage(amount : float):
 	
 	currentHealth-=amount
 	if currentHealth <=0:
+		get_tree().call_deferred("change_scene_to_packed", youWin)
 		queue_free()
-		animationPlayer.play("YOU WIN")
+		
 		
 		
 		
@@ -78,16 +90,17 @@ func awaitControls(yes : bool):
 		
 func emitFlip():
 	velocity.x = -velocity.x
-	animSprite.flip_h = !animSprite.flip_h
 	if getChance():
 		animSprite.play("Attack")
 		arrowNode.start_attack()
 		isAttacking = true
-		await get_tree().create_timer(5.0)
+		await get_tree().create_timer(5.0).timeout
 		isAttacking = false
 	if !getChance() && !isAttacking:
 		animSprite.play("Dash")
 func getChance() -> bool:
 	if !isAttacking:
-		return randf() < (1.0/3.0)
+		return randf() < (1.0/2.0)
 	return false
+
+	
