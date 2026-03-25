@@ -13,8 +13,8 @@ script = ExtResource("1_c7yig")
 
 [node name="MyHitbox" type="Area2D" parent="." unique_id=1953419364 groups=["GhostOfKhan"]]
 script = ExtResource("2_nst05")
-collisionLayer = 3
-collisionMask = 3
+collisionLayer = 5
+collisionMask = 5
 damage = 200.0
 metadata/_custom_type_script = "uid://73xxg0mh51c4"
 

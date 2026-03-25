@@ -771,7 +771,7 @@ animation = &"Hurt"
 [node name="MyHurtBox" type="Area2D" parent="." unique_id=49912006 groups=["GhostOfKhan"]]
 script = ExtResource("143_nkanr")
 base_health = 3000.0
-collisionLayer = 5
+collisionLayer = 3
 collisionMask = 5
 metadata/_custom_type_script = "uid://bi8e7iays2vyf"
 

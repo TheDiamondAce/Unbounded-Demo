@@ -20,6 +20,7 @@ class_name Player extends CharacterBody2D
 @export var comboDuration : float
 @export var attackArea : Area2D
 @export var maxComboLength : int
+@export var hurtBoxLayer : Area2D
 #@onready var straightPunch = preload("res://FrameDataSystemV1/Rai/straight_punch.tscn")
 #@export var hitbox_shape : CollisionShape2D
 #@export var stats : Stats
@@ -118,6 +119,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		
 	if dash_duration <0 && isdashing == true:
+		hurtBoxLayer.monitorable = true
 		end_dash()
 		
 	else:	
@@ -146,11 +148,13 @@ func animation() -> void:
 	
 		if !isAttacking:
 			animationPlayer.play("idle")
+			hurtBoxLayer.changeLayer(5,5)
 		#attack animation
 		if Input.is_action_just_pressed("attack") and is_on_floor():
 			isAttacking = true
 			animationPlayer.play("punch")
 			animSprite.play("punch")
+			hurtBoxLayer.changeLayer(5,5)
 			
 
 		#duck animations
@@ -160,11 +164,15 @@ func animation() -> void:
 				isAttacking = true
 				animSprite.play("hook")
 				animationPlayer.play("hook")
+				hurtBoxLayer.changeLayer(5,5)
 			else: if Input.is_action_pressed("dodge_left") and !isAttacking:
 				animSprite.play("duck_left")
+				hurtBoxLayer.changeLayer(4,4)
 			else: if Input.is_action_pressed("dodge_right") and !isAttacking:
 				animSprite.play("duck_right")
+				hurtBoxLayer.changeLayer(6,6)
 			else:
+				hurtBoxLayer.changeLayer(5,5)
 				animSprite.play("duck")
 		
 		#weave animations		
@@ -175,20 +183,26 @@ func animation() -> void:
 				isAttacking = true
 				animSprite.play("kick")
 				animationPlayer.play("kick")
+				hurtBoxLayer.changeLayer(5,5)
 			else: if Input.is_action_pressed("dodge_left") and !isAttacking:
 				animSprite.play("weave_left")
+				hurtBoxLayer.changeLayer(4,4)
 			else: if Input.is_action_pressed("dodge_right") and !isAttacking:
 				animSprite.play("weave_right")
+				hurtBoxLayer.changeLayer(6,6)
 			else:
 				animSprite.play("weave")
+				hurtBoxLayer.changeLayer(5,5)
 		#CODE IT IN LATER SO THAT IF YOUR WEAVING OR DODGING AND YOU PRESS DASH, IT WILL HAVE THE HOP ANIMATION OR DASH ANIMATION RESPECTIVELY, ELSE FOLLOW THIS CODE. MAKE IT GO THE DIRECTION THE WEAVE IS LEANING OR DUCK IS TOWARDS.
 		if isdashing and animSprite.flip_h == true and velocity.x > 0 or isdashing and animSprite.flip_h ==false and velocity.x <0 and !isWeaving and !isDucking:
 			animSprite.play("hop")	
 			animationPlayer.play("hop")
+			hurtBoxLayer.monitorable = false
 		
 		else: if isdashing and animSprite.flip_h == true and velocity.x < 0 or isdashing and animSprite.flip_h ==false and velocity.x > 0:
 			animSprite.play("dash")	
 			animationPlayer.play("dash")
+			hurtBoxLayer.monitorable = false
 		# idle animations
 		else: if !Input.is_anything_pressed() and is_on_floor():
 			animSprite.play("idle")

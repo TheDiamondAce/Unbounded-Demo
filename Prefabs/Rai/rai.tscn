@@ -884,7 +884,7 @@ size = Vector2(13.1965, 76.4256)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj1f8"]
 size = Vector2(56, 4)
 
-[node name="Rai" type="CharacterBody2D" unique_id=809542444 node_paths=PackedStringArray("healthBar", "attackArea") groups=["Player"]]
+[node name="Rai" type="CharacterBody2D" unique_id=809542444 node_paths=PackedStringArray("healthBar", "attackArea", "hurtBoxLayer") groups=["Player"]]
 z_index = 4
 script = ExtResource("1_4vrd6")
 impVelocity = 1200.0
@@ -894,6 +894,7 @@ youLoseScene = ExtResource("2_xj1f8")
 comboDuration = 1.5
 attackArea = NodePath("Rai_Animation/MyHitbox")
 maxComboLength = 5
+hurtBoxLayer = NodePath("MyHurtBox")
 
 [node name="Rai_Animation" type="AnimatedSprite2D" parent="." unique_id=358703614]
 position = Vector2(0, 46)

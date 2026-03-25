@@ -118,14 +118,15 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Intro" unique_id=1627304499]
-visible = false
 layout_mode = 0
-offset_left = -516.0
-offset_top = 19.0
-offset_right = 457.0
-offset_bottom = 162.0
+offset_left = -480.0
+offset_top = 77.0
+offset_right = 493.0
+offset_bottom = 220.0
 theme = SubResource("Theme_nuk6u")
-text = "YOU CANT LOSE TO THIS BOSS FIGHT pOssIbly RiGhT???"
+text = "The Ghost Of Khan"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Rai" parent="." unique_id=1497777926 instance=ExtResource("1_6ootx")]
 position = Vector2(-303, 528)
@@ -134,6 +135,7 @@ position = Vector2(-303, 528)
 position = Vector2(1, 297)
 
 [node name="temp_BG" type="Sprite2D" parent="." unique_id=144142737]
+visible = false
 self_modulate = Color(0.781707, 0.954239, 0.443511, 1)
 position = Vector2(-540, 143)
 scale = Vector2(2.026, 1.22229)
