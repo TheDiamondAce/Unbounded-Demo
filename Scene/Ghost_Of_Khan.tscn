@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://cejyausqc7r0c" path="res://Script/GhostOfKhanBounce.gd" id="5_aghwi"]
 [ext_resource type="PackedScene" uid="uid://1ume7pe6dssh" path="res://Prefabs/Ghost_Of_Khan/ghost_of_khan.tscn" id="5_pvrid"]
 [ext_resource type="PackedScene" uid="uid://dl18gjlvl0of2" path="res://Prefabs/arrow.tscn" id="6_q3fs2"]
+[ext_resource type="Texture2D" uid="uid://bi3bsphv814km" path="res://images/Spritesheets/Background/T1343_f_1.jpg" id="7_3b470"]
+[ext_resource type="AudioStream" uid="uid://bjuxf3gt1jamx" path="res://Audio/Batzorig Vaanchig - Chinggis Khaanii Magtaal   Slowed + Reverb (1).mp3" id="8_y7qrv"]
+[ext_resource type="Texture2D" uid="uid://mayixtxednoo" path="res://images/Spritesheets/Background/bolatbek-gabiden-dsL_tvf1Z-E-unsplash.jpg" id="9_q3fs2"]
 
 [sub_resource type="Animation" id="Animation_pvrid"]
 length = 0.001
@@ -86,10 +89,16 @@ default_font_size = 50
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ootx"]
 size = Vector2(4593, 136)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lf2ru"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e34uv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nuk6u"]
 size = Vector2(572, 1541)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3b470"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e34uv"]
+normal = Vector2(1, 0)
 
 [node name="GhostOfKhan" type="Node2D" unique_id=807642396]
 script = ExtResource("1_lbhm0")
@@ -120,11 +129,16 @@ horizontal_alignment = 1
 [node name="RichTextLabel2" type="RichTextLabel" parent="Intro" unique_id=1627304499]
 layout_mode = 0
 offset_left = -480.0
-offset_top = 77.0
+offset_top = 150.0
 offset_right = 493.0
-offset_bottom = 220.0
+offset_bottom = 571.0
 theme = SubResource("Theme_nuk6u")
-text = "The Ghost Of Khan"
+text = "The Ghost Of Khan
+
+
+\"My Solider Died\"
+An eye for I..."
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -157,9 +171,11 @@ position = Vector2(7, 645)
 shape = SubResource("RectangleShape2D_6ootx")
 
 [node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D2" unique_id=1821481884]
-position = Vector2(6, 650)
-scale = Vector2(4595.75, 144)
-texture = SubResource("PlaceholderTexture2D_lf2ru")
+modulate = Color(0.27058825, 0.13725491, 0.12156863, 1)
+material = SubResource("CanvasItemMaterial_e34uv")
+position = Vector2(-6.9999995, 943.00006)
+scale = Vector2(3.8558335, 1.0507758)
+texture = ExtResource("7_3b470")
 
 [node name="Bouncer" type="Area2D" parent="StaticBody2D2" unique_id=405916784]
 position = Vector2(358, 490)
@@ -173,5 +189,26 @@ shape = SubResource("RectangleShape2D_nuk6u")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2/Bouncer" unique_id=93864535]
 position = Vector2(-4888, -404)
 shape = SubResource("RectangleShape2D_nuk6u")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=705874008]
+stream = ExtResource("8_y7qrv")
+autoplay = true
+
+[node name="BolatbekGabidenDsLTvf1zEUnsplash" type="Sprite2D" parent="." unique_id=638862652]
+modulate = Color(0.3764706, 0.24705882, 0.3764706, 1)
+z_index = -2
+position = Vector2(65, 330)
+scale = Vector2(0.3427855, 0.31640622)
+texture = ExtResource("9_q3fs2")
+
+[node name="WorldBoundaries" type="StaticBody2D" parent="." unique_id=580481477]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries" unique_id=291459806]
+position = Vector2(514, 339)
+shape = SubResource("WorldBoundaryShape2D_3b470")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBoundaries" unique_id=63715952]
+position = Vector2(-512, 340)
+shape = SubResource("WorldBoundaryShape2D_e34uv")
 
 [connection signal="area_entered" from="StaticBody2D2/Bouncer" to="StaticBody2D2/Bouncer" method="_on_bouncer_area_entered"]

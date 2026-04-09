@@ -262,7 +262,7 @@ func start_combo_timer():
 	
 	
 func check_combos() -> void:
-	if inputSequence == ["jump", "left", "right", "left", "right"] or inputSequence == ["jump", "right", "left", "right", "left"]:
+	if inputSequence == ["left", "right", "left", "right"] and !is_on_floor() or inputSequence == ["right", "left", "right", "left"] and !is_on_floor():
 		isInCombo = true
 		currentCombo = "Corkscrew"
 		print(animationPlayer.current_animation)
@@ -280,7 +280,7 @@ func combo_excecute() -> void:
 	pass
 	
 func record_input(action):
-	if comboTimer <= 0 and !isInCombo:
+	if comboTimer <= 0:
 		inputSequence = []
 		start_combo_timer()
 		inputSequence.append(action)
@@ -291,6 +291,7 @@ func record_input(action):
 		inputSequence.append(action)
 		print(action)
 		print(inputSequence)
+		comboTimer = comboDuration
 		check_combos()
 		
 func awaitControls(yes : bool):

@@ -6,7 +6,13 @@ class_name GhostOfKhan extends CharacterBody2D
 @onready var intro = $"../Intro"
 @onready var youWin = preload("res://Scene/youWin.tscn")
 @export var healthBar : HealthBar
-const SPEED = 600 
+@export var sfx : AudioStreamPlayer2D
+
+@export_category("Sound Effect Audio Variables")
+var walking = preload("res://Audio/horsewalking.mp3")
+@export var walkTime : Timer
+
+const SPEED = 900 
 const JUMP_VELOCITY = -400.0
 var currentHealth
 var awaitingForControls = false
@@ -34,6 +40,13 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	if animSprite.animation == "Dash" or animSprite.animation == "Attack":
+		
+		if walkTime.time_left <=0:
+			sfx.pitch_scale = randf_range(0.8,1.2)
+			sfx.play()
+			walkTime.start(0.5)
 
 	move_and_slide()
 
@@ -63,8 +76,10 @@ func take_damage(amount : float):
 	velocity.x = 0
 	animationPlayer.play("hurt")
 	await animationPlayer.animation_finished
-	velocity.x = lastVelocity
+	velocity.x = lastVelocity + 500
 	animSprite.play(lastAnimation)
+	await get_tree().create_timer(1.0)
+	velocity.x -=500
 	print("BACK ON!")
 	animSprite.frame = lastFrame
 	
@@ -102,5 +117,6 @@ func getChance() -> bool:
 	if !isAttacking:
 		return randf() < (1.0/2.0)
 	return false
+		
 
 	
